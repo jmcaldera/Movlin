@@ -1,0 +1,17 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    def domainDependencies = rootProject.ext.domain
+    def unitTestDependencies = rootProject.ext.unitTesting
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation domainDependencies.kotlin
+    implementation domainDependencies.coroutines
+
+    // Unit tests
+    testImplementation unitTestDependencies.junit
+    testImplementation unitTestDependencies.mockito
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

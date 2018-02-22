@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    def config = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion config["compileSdkVersion"]
+    buildToolsVersion config["buildToolsVersion"]
+
+    defaultConfig {
+        minSdkVersion config["minSdkVersion"]
+        targetSdkVersion config["targetSdkVersion"]
+        versionCode config["versionCode"]
+        versionName config["versionName"]
+
+        testInstrumentationRunner config["testRunner"]
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    def dataDependencies = rootProject.ext.data
+    def unitTestDependencies = rootProject.ext.unitTesting
+    def instrumentationTestDependencies = rootProject.ext.instrumentationTesting
+
+    implementation project(':domain')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation dataDependencies.kotlin
+    implementation dataDependencies.coroutines
+    implementation dataDependencies.coroutinesAndroid
+    implementation dataDependencies.dagger
+    kapt dataDependencies.daggerCompiler
+    implementation dataDependencies.gson
+    implementation dataDependencies.retrofit
+    implementation dataDependencies.retrofitGson
+
+    // Unit tests
+    testImplementation unitTestDependencies.junit
+    testImplementation unitTestDependencies.mockito
+    androidTestImplementation instrumentationTestDependencies.testRunner
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+}
