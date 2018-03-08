@@ -9,11 +9,11 @@ import com.jmcaldera.domain.model.*
  */
 interface Repository {
 
-    fun getNowPlayingMovies(): IO<Result<NowPlaying, MovieError>>
+    suspend fun getNowPlayingMovies(): IO<Result<NowPlaying, MovieError>>
 
-    fun getTopRatedMovies(): IO<Result<TopRated, MovieError>>
+    suspend fun getTopRatedMovies(): IO<Result<TopRated, MovieError>>
 
-    fun getPopularMovies(): IO<Result<Popular, MovieError>>
+    suspend fun getPopularMovies(): IO<Result<Popular, MovieError>>
 
-    fun getUpcomingMovies(): IO<Result<Upcoming, MovieError>>
+    suspend fun getUpcomingMovies(): IO<Result<Upcoming, MovieError>>
 }
