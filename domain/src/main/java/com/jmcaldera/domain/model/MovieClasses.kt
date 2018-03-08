@@ -5,9 +5,32 @@ package com.jmcaldera.domain.model
  */
 data class NowPlaying(
         val movies: List<Movie>,    // results
-        val page: Int, val totalResults: Int,
+        val page: Int,
+        val totalResults: Int,
         val dates: Dates,
         val totalPages: Int
+)
+
+data class TopRated(
+        val page: Int,
+        val totalResults: Int,
+        val totalPages: Int,
+        val movies: List<Movie>
+)
+
+data class Upcoming(
+        val movies: List<Movie>,    // results
+        val page: Int,
+        val totalResults: Int,
+        val dates: Dates,
+        val totalPages: Int
+)
+
+data class Popular(
+        val page: Int,
+        val totalResults: Int,
+        val totalPages: Int,
+        val movies: List<Movie>
 )
 
 data class Movie(
