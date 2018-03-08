@@ -1,6 +1,5 @@
 package com.jmcaldera.data.remote
 
-import com.jmcaldera.data.TmdbService
 import com.jmcaldera.data.datasource.MoviesDataSource
 import com.jmcaldera.data.extension.orElse
 import com.jmcaldera.data.extension.transformResult

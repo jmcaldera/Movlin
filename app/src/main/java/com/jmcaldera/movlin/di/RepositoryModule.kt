@@ -1,7 +1,7 @@
 package com.jmcaldera.movlin.di
 
 import com.jmcaldera.data.MoviesRepositoryImpl
-import com.jmcaldera.data.TmdbService
+import com.jmcaldera.data.remote.TmdbService
 import com.jmcaldera.data.datasource.MoviesDataSource
 import com.jmcaldera.data.remote.RemoteMoviesDataSource
 import com.jmcaldera.domain.repository.MoviesRepository

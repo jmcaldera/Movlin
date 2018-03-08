@@ -1,4 +1,4 @@
-package com.jmcaldera.data
+package com.jmcaldera.data.remote
 
 /**
  * Created by jmcaldera on 08-03-18.

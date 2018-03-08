@@ -1,9 +1,9 @@
 package com.jmcaldera.movlin.di
 
 import android.content.Context
-import com.jmcaldera.data.TmdbEndpoints
-import com.jmcaldera.data.TmdbInterceptor
-import com.jmcaldera.data.TmdbService
+import com.jmcaldera.data.remote.TmdbEndpoints
+import com.jmcaldera.data.remote.TmdbInterceptor
+import com.jmcaldera.data.remote.TmdbService
 import com.jmcaldera.movlin.BuildConfig
 import com.jmcaldera.movlin.R
 import com.jmcaldera.movlin.di.qualifier.ApiKey

@@ -1,9 +1,9 @@
-package com.jmcaldera.data
+package com.jmcaldera.data.remote
 
-import com.jmcaldera.data.TmdbEndpoints.Companion.NOW_PLAYING_MOVIES
-import com.jmcaldera.data.TmdbEndpoints.Companion.POPULAR_MOVIES
-import com.jmcaldera.data.TmdbEndpoints.Companion.TOP_RATES_MOVIES
-import com.jmcaldera.data.TmdbEndpoints.Companion.UPCOMING_MOVIES
+import com.jmcaldera.data.remote.TmdbEndpoints.Companion.NOW_PLAYING_MOVIES
+import com.jmcaldera.data.remote.TmdbEndpoints.Companion.POPULAR_MOVIES
+import com.jmcaldera.data.remote.TmdbEndpoints.Companion.TOP_RATES_MOVIES
+import com.jmcaldera.data.remote.TmdbEndpoints.Companion.UPCOMING_MOVIES
 import com.jmcaldera.data.model.*
 import retrofit2.Call
 import retrofit2.http.GET

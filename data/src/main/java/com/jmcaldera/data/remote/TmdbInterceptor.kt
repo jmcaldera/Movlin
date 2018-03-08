@@ -1,4 +1,4 @@
-package com.jmcaldera.data
+package com.jmcaldera.data.remote
 
 import okhttp3.Interceptor
 import okhttp3.Response
