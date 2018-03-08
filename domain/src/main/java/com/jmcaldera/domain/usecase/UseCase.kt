@@ -5,7 +5,7 @@ package com.jmcaldera.domain.usecase
  */
 abstract class UseCase<out T, in Params> {
 
-    abstract suspend fun execute(params: Params? = null) : T
+    abstract suspend fun execute(params: Params) : T
 
     class None
 }

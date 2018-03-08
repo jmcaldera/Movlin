@@ -3,6 +3,7 @@ package com.jmcaldera.movlin.di
 import android.content.Context
 import com.jmcaldera.movlin.App
 import com.jmcaldera.movlin.di.qualifier.ApplicationQualifier
+import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -13,12 +14,10 @@ import javax.inject.Singleton
 @Module
 class ApplicationModule(private val app: App) {
 
-    @Provides
-    @Singleton
-    fun provideApplication(): App = app
+    @Provides @Singleton fun provideApplication(): App = app
 
-    @Provides
-    @Singleton
-    @ApplicationQualifier
-    fun provideApplicationContext(): Context = app
+    @Provides @Singleton @ApplicationQualifier fun provideApplicationContext(): Context = app
+
+    @Provides @Singleton fun providePicasso(@ApplicationQualifier context: Context): Picasso =
+            Picasso.Builder(context).build()
 }

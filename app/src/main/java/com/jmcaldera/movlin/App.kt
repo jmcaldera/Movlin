@@ -14,6 +14,7 @@ class App: Application() {
     companion object {
         lateinit var appComponent: ApplicationComponent
     }
+
     override fun onCreate() {
         super.onCreate()
         initializeDagger()
@@ -21,7 +22,8 @@ class App: Application() {
     }
 
     private fun initializeDagger() {
-        appComponent = DaggerApplicationComponent.builder()
+        appComponent = DaggerApplicationComponent
+                .builder()
                 .applicationModule(ApplicationModule(this))
                 .build()
     }
