@@ -8,7 +8,7 @@ import javax.inject.Singleton
  * Created by jmcaldera on 21-02-18.
  */
 @Singleton
-@Component(modules = [ApplicationModule::class])
+@Component(modules = [ApplicationModule::class, DataModule::class, RepositoryModule::class, DomainModule::class])
 interface ApplicationComponent {
 
     fun inject(activity: MainActivity)
