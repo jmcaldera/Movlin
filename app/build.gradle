@@ -58,6 +58,7 @@ dependencies {
     implementation applicationDependencies.retrofit
     implementation applicationDependencies.retrofitGson
     implementation applicationDependencies.okHttpLoggingInterceptor
+    implementation applicationDependencies.androidKtx
 
     // Unit and Instrumentation tests
     testImplementation unitTestDependencies.junit

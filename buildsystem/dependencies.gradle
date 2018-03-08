@@ -9,6 +9,7 @@ ext {
     retrofitVersion = '2.3.0'
     okhttpVersion = '3.9.1'
     kotlinxCoroutinesVersion = '0.22.2'
+    androidKtxVersion = '0.2'
 
     // Development
     leakCanaryVersion = '1.5.4'
@@ -38,7 +39,8 @@ ext {
             retrofitGson:               "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             okHttpLoggingInterceptor:   "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
             coroutines:                 "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesVersion",
-            coroutinesAndroid:          "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutinesVersion"
+            coroutinesAndroid:          "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutinesVersion",
+            androidKtx:                 "androidx.core:core-ktx:$androidKtxVersion"
 
     ]
 
