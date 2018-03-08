@@ -10,6 +10,7 @@ import com.jmcaldera.movlin.di.qualifier.ApiKey
 import com.jmcaldera.movlin.di.qualifier.ApplicationQualifier
 import dagger.Module
 import dagger.Provides
+import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -36,8 +37,15 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(interceptor: Interceptor): OkHttpClient =
-            OkHttpClient().newBuilder()
+    fun provideNetworkCache(@ApplicationQualifier context: Context) =
+            Cache(context.cacheDir, 10 * 1024 * 1024)   // 10 MB
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(cache: Cache, interceptor: Interceptor): OkHttpClient =
+            OkHttpClient()
+                    .newBuilder()
+                    .cache(cache)
                     .addInterceptor(interceptor)
                     .addInterceptor(HttpLoggingInterceptor().apply {
                         level = if (BuildConfig.RETROFIT_LOG) Level.BODY else Level.NONE
