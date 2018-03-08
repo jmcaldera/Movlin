@@ -1,6 +1,6 @@
 ext {
     // Libraries
-    supportLibraryVersion = '26.1.0'
+    supportLibraryVersion = '27.0.2'
     constraintVersion = '1.0.2'
     daggerVersion = '2.14.1'
     ankoVersion = '0.10.4'

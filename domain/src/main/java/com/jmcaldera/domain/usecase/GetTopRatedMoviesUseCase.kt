@@ -11,6 +11,6 @@ import com.jmcaldera.domain.repository.MoviesRepository
 class GetTopRatedMoviesUseCase(private val moviesRepository: MoviesRepository) :
         UseCase<IOResult<TopRatedPopular, MovieError>, UseCase.None>() {
 
-    override suspend fun execute(params: None): IOResult<TopRatedPopular, MovieError> =
+    override suspend fun execute(params: None?): IOResult<TopRatedPopular, MovieError> =
             moviesRepository.getTopRatedMovies()
 }

@@ -11,6 +11,6 @@ import com.jmcaldera.domain.repository.MoviesRepository
 class GetUpcomingMoviesUseCase(private val moviesRepository: MoviesRepository):
         UseCase<IOResult<NowPlayingUpcoming, MovieError>, UseCase.None>() {
 
-    override suspend fun execute(params: None): IOResult<NowPlayingUpcoming, MovieError> =
+    override suspend fun execute(params: None?): IOResult<NowPlayingUpcoming, MovieError> =
             moviesRepository.getUpcomingMovies()
 }
