@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 /**
  * Created by jmcaldera on 08-03-18.
  */
-data class TmdbNowPlaying(
+data class TmdbNowPlayingUpcoming(
         @Expose @SerializedName("results") val movies: List<TmdbMovie>,    // results
         @Expose val page: Int,
         @Expose @SerializedName("total_results") val totalResults: Int,
@@ -14,27 +14,27 @@ data class TmdbNowPlaying(
         @Expose @SerializedName("total_pages") val totalPages: Int
 )
 
-data class TmdbTopRated(
+data class TmdbTopRatedPopular(
         @Expose val page: Int,
         @Expose @SerializedName("total_results") val totalResults: Int,
         @Expose @SerializedName("total_pages") val totalPages: Int,
         @Expose @SerializedName("results") val movies: List<TmdbMovie>
 )
 
-data class TmdbUpcoming(
-        @Expose @SerializedName("results") val movies: List<TmdbMovie>,    // results
-        @Expose val page: Int,
-        @Expose @SerializedName("total_results") val totalResults: Int,
-        @Expose val dates: TmdbDates,
-        @Expose @SerializedName("total_pages") val totalPages: Int
-)
-
-data class TmdbPopular(
-        @Expose val page: Int,
-        @Expose @SerializedName("total_results") val totalResults: Int,
-        @Expose @SerializedName("total_pages") val totalPages: Int,
-        @Expose @SerializedName("results") val movies: List<TmdbMovie>
-)
+//data class TmdbUpcoming(
+//        @Expose @SerializedName("results") val movies: List<TmdbMovie>,    // results
+//        @Expose val page: Int,
+//        @Expose @SerializedName("total_results") val totalResults: Int,
+//        @Expose val dates: TmdbDates,
+//        @Expose @SerializedName("total_pages") val totalPages: Int
+//)
+//
+//data class TmdbPopular(
+//        @Expose val page: Int,
+//        @Expose @SerializedName("total_results") val totalResults: Int,
+//        @Expose @SerializedName("total_pages") val totalPages: Int,
+//        @Expose @SerializedName("results") val movies: List<TmdbMovie>
+//)
 
 data class TmdbMovie(
         @Expose @SerializedName("vote_count") val voteCount: Int,

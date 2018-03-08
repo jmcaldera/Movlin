@@ -3,7 +3,7 @@ package com.jmcaldera.domain.model
 /**
  * Created by jmcaldera on 07-03-18.
  */
-data class NowPlaying(
+data class NowPlayingUpcoming(
         val movies: List<Movie>,    // results
         val page: Int,
         val totalResults: Int,
@@ -11,27 +11,27 @@ data class NowPlaying(
         val totalPages: Int
 )
 
-data class TopRated(
+data class TopRatedPopular(
         val page: Int,
         val totalResults: Int,
         val totalPages: Int,
         val movies: List<Movie>
 )
 
-data class Upcoming(
-        val movies: List<Movie>,    // results
-        val page: Int,
-        val totalResults: Int,
-        val dates: Dates,
-        val totalPages: Int
-)
-
-data class Popular(
-        val page: Int,
-        val totalResults: Int,
-        val totalPages: Int,
-        val movies: List<Movie>
-)
+//data class Upcoming(
+//        val movies: List<Movie>,    // results
+//        val page: Int,
+//        val totalResults: Int,
+//        val dates: Dates,
+//        val totalPages: Int
+//)
+//
+//data class Popular(
+//        val page: Int,
+//        val totalResults: Int,
+//        val totalPages: Int,
+//        val movies: List<Movie>
+//)
 
 data class Movie(
 		val voteCount: Int,

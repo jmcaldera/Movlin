@@ -3,10 +3,14 @@ package com.jmcaldera.domain.functional
 /**
  * Created by jmcaldera on 26-02-18.
  */
-sealed class Result<out A, out E>
+sealed class Result<out A, out E> {
+    companion object
+}
 
 data class Failure<out E>(val error: E) : Result<Nothing, E>()
 data class Success<out A>(val value: A) : Result<A, Nothing>()
+
+fun <A> Result.Companion.pure(a: A): Result<A, Nothing> = Success(a)
 
 // Functor
 fun <A, E, B> Result<A, E>.map(block: (A) -> B): Result<B, E> = flatMap { Success(block(it)) }

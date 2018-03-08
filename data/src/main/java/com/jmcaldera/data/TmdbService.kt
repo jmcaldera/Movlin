@@ -4,10 +4,7 @@ import com.jmcaldera.data.TmdbEndpoints.Companion.NOW_PLAYING_MOVIES
 import com.jmcaldera.data.TmdbEndpoints.Companion.POPULAR_MOVIES
 import com.jmcaldera.data.TmdbEndpoints.Companion.TOP_RATES_MOVIES
 import com.jmcaldera.data.TmdbEndpoints.Companion.UPCOMING_MOVIES
-import com.jmcaldera.data.model.TmdbNowPlaying
-import com.jmcaldera.data.model.TmdbPopular
-import com.jmcaldera.data.model.TmdbTopRated
-import com.jmcaldera.data.model.TmdbUpcoming
+import com.jmcaldera.data.model.*
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -17,14 +14,14 @@ import retrofit2.http.GET
 interface TmdbService {
 
     @GET(NOW_PLAYING_MOVIES)
-    fun getNowPlayingMovies(): Call<TmdbNowPlaying>
+    fun getNowPlayingMovies(): Call<TmdbNowPlayingUpcoming>
 
     @GET(UPCOMING_MOVIES)
-    fun getUpcomingMovies(): Call<TmdbUpcoming>
+    fun getUpcomingMovies(): Call<TmdbNowPlayingUpcoming>
 
     @GET(TOP_RATES_MOVIES)
-    fun getTopRatedMovies(): Call<TmdbTopRated>
+    fun getTopRatedMovies(): Call<TmdbTopRatedPopular>
 
     @GET(POPULAR_MOVIES)
-    fun getPopularMovies(): Call<TmdbPopular>
+    fun getPopularMovies(): Call<TmdbTopRatedPopular>
 }

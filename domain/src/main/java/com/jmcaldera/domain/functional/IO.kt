@@ -11,6 +11,8 @@ class IO<out A>(val deferred: Deferred<A>) {
     companion object
 }
 
+fun <A> IO.Companion.pure(a: A): IO<A> = IO(async(CommonPool) { a })
+
 fun <A> IO.Companion.async(block: () -> A): IO<A> = IO(async(CommonPool) { block() })
 
 suspend fun <A> IO<A>.asyncAwait(block: (A) -> Unit) {
