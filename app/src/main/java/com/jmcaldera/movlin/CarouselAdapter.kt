@@ -33,7 +33,7 @@ class CarouselAdapter() : RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(movie: MovieViewModel) = with(movie) {
-            itemView.image_poster.loadFromUrl(TmdbEndpoints.POSTER_URL_W500 + posterPath)
+            itemView.image_poster.loadFromUrl(TmdbEndpoints.POSTER_URL_W185 + posterPath)
         }
     }
 }
