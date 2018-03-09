@@ -3,7 +3,9 @@ package com.jmcaldera.movlin
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.jmcaldera.data.remote.TmdbEndpoints
 import com.jmcaldera.movlin.extension.inflate
+import com.jmcaldera.movlin.extension.loadFromUrl
 import com.jmcaldera.movlin.model.MovieViewModel
 import kotlinx.android.synthetic.main.item_movie_carousel.view.*
 import kotlin.properties.Delegates
@@ -31,7 +33,7 @@ class CarouselAdapter() : RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(movie: MovieViewModel) = with(movie) {
-            itemView.text_movie_title.text = title
+            itemView.image_poster.loadFromUrl(TmdbEndpoints.POSTER_URL_W500 + posterPath)
         }
     }
 }
