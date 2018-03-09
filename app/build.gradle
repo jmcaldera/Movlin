@@ -46,6 +46,7 @@ dependencies {
     implementation applicationDependencies.cardView
     implementation applicationDependencies.recyclerView
     implementation applicationDependencies.design
+    implementation applicationDependencies.supportv4
     implementation applicationDependencies.constraint
     implementation applicationDependencies.dagger
     kapt applicationDependencies.daggerCompiler

@@ -28,6 +28,7 @@ ext {
             cardView:                   "com.android.support:cardview-v7:$supportLibraryVersion",
             recyclerView:               "com.android.support:recyclerview-v7:$supportLibraryVersion",
             design:                     "com.android.support:design:$supportLibraryVersion",
+            supportv4:                  "com.android.support:support-v4:$supportLibraryVersion",
             constraint:                 "com.android.support.constraint:constraint-layout:$constraintVersion",
             dagger:                     "com.google.dagger:dagger:$daggerVersion",
             daggerCompiler:             "com.google.dagger:dagger-compiler:$daggerVersion",

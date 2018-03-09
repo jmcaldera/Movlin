@@ -1,9 +1,10 @@
-package com.jmcaldera.movlin
+package com.jmcaldera.movlin.movies.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.jmcaldera.data.remote.TmdbEndpoints
+import com.jmcaldera.movlin.R
 import com.jmcaldera.movlin.extension.inflate
 import com.jmcaldera.movlin.extension.loadFromUrl
 import com.jmcaldera.movlin.model.MovieViewModel
