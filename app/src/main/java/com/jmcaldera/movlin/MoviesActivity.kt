@@ -36,26 +36,18 @@ class MoviesActivity : AppCompatActivity() {
 
         list_now_playing.layoutManager = LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL, false)
-        list_now_playing.addItemDecoration(DividerItemDecoration(list_now_playing.context,
-                DividerItemDecoration.HORIZONTAL))
         list_now_playing.adapter = CarouselAdapter()
 
         list_top_rated.layoutManager = LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL, false)
-        list_top_rated.addItemDecoration(DividerItemDecoration(list_top_rated.context,
-                DividerItemDecoration.HORIZONTAL))
         list_top_rated.adapter = CarouselAdapter()
 
         list_popular.layoutManager = LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL, false)
-        list_popular.addItemDecoration(DividerItemDecoration(list_popular.context,
-                DividerItemDecoration.HORIZONTAL))
         list_popular.adapter = CarouselAdapter()
 
         list_upcoming.layoutManager = LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL, false)
-        list_upcoming.addItemDecoration(DividerItemDecoration(list_upcoming.context,
-                DividerItemDecoration.HORIZONTAL))
         list_upcoming.adapter = CarouselAdapter()
     }
 
