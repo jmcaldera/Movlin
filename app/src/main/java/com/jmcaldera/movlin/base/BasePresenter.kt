@@ -3,10 +3,10 @@ package com.jmcaldera.movlin.base
 /**
  * Created by jmcaldera on 26-02-18.
  */
-interface BasePresenter<out T: BaseView> {
+interface BasePresenter<T: BaseView> {
 
-    val view: T
+    var view: T
 
-    fun start()
+    suspend fun start()
 
 }

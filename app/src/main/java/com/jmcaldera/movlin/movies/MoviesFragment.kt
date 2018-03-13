@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.view.isGone
+import androidx.view.isVisible
 import com.jmcaldera.domain.functional.asyncAwait
 import com.jmcaldera.domain.functional.fold
 import com.jmcaldera.domain.usecase.GetNowPlayingMoviesUseCase
@@ -16,6 +18,7 @@ import com.jmcaldera.movlin.movies.adapter.CarouselAdapter
 
 import com.jmcaldera.movlin.R
 import com.jmcaldera.movlin.di.ApplicationComponent
+import com.jmcaldera.movlin.di.subcomponent.movies.MoviesModule
 import com.jmcaldera.movlin.model.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.coroutines.experimental.android.UI
@@ -27,25 +30,21 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass.
  */
-class MoviesFragment : BaseFragment() {
+class MoviesFragment : BaseFragment(), MoviesContract.View {
 
     @Inject
-    lateinit var getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase
-
-    @Inject
-    lateinit var getPopularMoviesUseCase: GetPopularMoviesUseCase
-
-    @Inject
-    lateinit var getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase
-
-    @Inject
-    lateinit var getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase
+    lateinit var presenter: MoviesContract.Presenter
 
     override fun fragmentId(): Int = R.layout.fragment_movies
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViews()
+        presenter.view = this
+    }
+
+    private fun initViews() {
         list_now_playing.layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.HORIZONTAL, false)
         list_now_playing.adapter = CarouselAdapter()
@@ -67,50 +66,52 @@ class MoviesFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
         launch(UI) {
-            getNowPlayingMoviesUseCase.execute().asyncAwait {
-                it.fold(
-                        onSuccess = {
-                            (list_now_playing.adapter as CarouselAdapter).movieList =
-                                    it.movies.map { MovieViewModel(it.title, it.posterPath) }
-                        },
-                        onError = { activity?.toast("Not Found!") }
-                )
-            }
-
-            getTopRatedMoviesUseCase.execute().asyncAwait {
-                it.fold(
-                        onSuccess = {
-                            (list_top_rated.adapter as CarouselAdapter).movieList =
-                                    it.movies.map { MovieViewModel(it.title, it.posterPath) }
-                        },
-                        onError = { activity?.toast("Not Found!") }
-                )
-            }
-
-            getPopularMoviesUseCase.execute().asyncAwait {
-                it.fold(
-                        onSuccess = {
-                            (list_popular.adapter as CarouselAdapter).movieList =
-                                    it.movies.map { MovieViewModel(it.title, it.posterPath) }
-                        },
-                        onError = { activity?.toast("Not Found!") }
-                )
-            }
-
-            getUpcomingMoviesUseCase.execute().asyncAwait {
-                it.fold(
-                        onSuccess = {
-                            (list_upcoming.adapter as CarouselAdapter).movieList =
-                                    it.movies.map { MovieViewModel(it.title, it.posterPath) }
-                        },
-                        onError = { activity?.toast("Not Found!") }
-                )
-            }
+            presenter.start()
         }
     }
 
+    override fun showLoading(show: Boolean) {
+        if (show) {
+            movies_container.isGone = true
+            progress_bar.isVisible = true
+            progress_bar.show()
+        } else {
+            progress_bar.hide()
+            progress_bar.isGone = true
+            movies_container.isVisible = true
+        }
+    }
+
+    override fun showUnauthorizedError() {
+        activity?.toast("Unauthorized!")
+    }
+
+    override fun showNotFoundError() {
+        activity?.toast("Not Found!")
+    }
+
+    override fun showNowPlayingMovies(movies: List<MovieViewModel>) {
+        (list_now_playing.adapter as CarouselAdapter).movieList = movies
+    }
+
+    override fun showTopRatedMovies(movies: List<MovieViewModel>) {
+        (list_top_rated.adapter as CarouselAdapter).movieList = movies
+    }
+
+    override fun showPopularMovies(movies: List<MovieViewModel>) {
+        (list_popular.adapter as CarouselAdapter).movieList = movies
+    }
+
+    override fun showUpcomingMovies(movies: List<MovieViewModel>) {
+        (list_upcoming.adapter as CarouselAdapter).movieList = movies
+    }
+
+    override fun isActive(): Boolean {
+        return isAdded
+    }
+
     override fun injectDependencies(appComponent: ApplicationComponent) {
-        appComponent.inject(this)
+        appComponent.plus(MoviesModule()).injectTo(this)
     }
 
 }// Required empty public constructor

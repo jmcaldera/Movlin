@@ -37,7 +37,7 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideNetworkCache(@ApplicationQualifier context: Context) =
+    fun provideNetworkCache(@ApplicationQualifier context: Context) : Cache =
             Cache(context.cacheDir, 10 * 1024 * 1024)   // 10 MB
 
     @Provides

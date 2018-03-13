@@ -1,6 +1,7 @@
 package com.jmcaldera.movlin.di
 
-import com.jmcaldera.movlin.movies.MoviesFragment
+import com.jmcaldera.movlin.di.subcomponent.movies.MoviesComponent
+import com.jmcaldera.movlin.di.subcomponent.movies.MoviesModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -11,5 +12,5 @@ import javax.inject.Singleton
 @Component(modules = [ApplicationModule::class, DataModule::class, RepositoryModule::class, DomainModule::class])
 interface ApplicationComponent {
 
-    fun inject(moviesFragment: MoviesFragment)
+    fun plus(module: MoviesModule): MoviesComponent
 }
