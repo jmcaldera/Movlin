@@ -54,3 +54,25 @@ data class TmdbMovie(
 )
 
 data class TmdbDates(val maximum: String, val minimum: String)
+
+data class TmdbMovieDetails(
+        @Expose @SerializedName("vote_count") val voteCount: Int,
+        @Expose val budge: Long,
+        @Expose val id: Int,
+        @Expose val video: Boolean,
+        @Expose @SerializedName("vote_average") val voteAverage: Double,
+        @Expose val title: String,
+        @Expose val popularity: Double,
+        @Expose @SerializedName("poster_path") val posterPath: String,
+        @Expose @SerializedName("original_language") val originalLanguage: String,
+        @Expose @SerializedName("original_title") val originalTitle: String,
+        @Expose @SerializedName("genres") val genres: List<TmdbGenre>,
+        @Expose @SerializedName("backdrop_path") val backdropPath: String,
+        @Expose val adult: Boolean,
+        @Expose val overview: String,
+        @Expose @SerializedName("release_date") val releaseDate: String,
+        @Expose val runtime: Int,
+        @Expose val revenue: Long
+)
+
+data class TmdbGenre(@Expose val id: Int, @Expose val name: String)

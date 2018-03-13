@@ -3,6 +3,7 @@ package com.jmcaldera.data.remote
 import com.jmcaldera.data.datasource.MoviesDataSource
 import com.jmcaldera.data.extension.orElse
 import com.jmcaldera.data.extension.transformResult
+import com.jmcaldera.data.mapper.convertMovieDetailsToDomain
 import com.jmcaldera.data.mapper.convertToDomain
 import com.jmcaldera.domain.functional.IOResult
 import com.jmcaldera.domain.model.*
@@ -33,6 +34,12 @@ class RemoteMoviesDataSource(private val service: TmdbService) : MoviesDataSourc
     override suspend fun requestUpcomingMovies(): IOResult<NowPlayingUpcoming, MovieError> {
         return service.getUpcomingMovies().transformResult {
             convertToDomain(this)
+        }.orElse { NotFoundError() }
+    }
+
+    override suspend fun requestMovieDetails(movieId: Int): IOResult<MovieDetails, MovieError> {
+        return service.getMovieDetails(movieId).transformResult {
+            convertMovieDetailsToDomain(this)
         }.orElse { NotFoundError() }
     }
 }

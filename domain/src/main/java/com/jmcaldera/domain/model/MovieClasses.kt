@@ -51,3 +51,26 @@ data class Movie(
 )
 
 data class Dates(val maximum: String, val minimum: String)
+
+data class MovieDetails(
+        val voteCount: Int,
+        val budget: Long,
+        val id: Int,
+        val video: Boolean,
+        val voteAverage: Double,
+        val title: String,
+        val popularity: Double,
+        val posterPath: String,
+        val originalLanguage: String,
+        val originalTitle: String,
+        val genres: List<Genre>,
+        val backdropPath: String? = null,
+        val adult: Boolean,
+        val overview: String,
+        val releaseDate: String,
+        val runtime: Int,
+        val revenue: Long
+
+)
+
+data class Genre(val id: Int, val name: String)

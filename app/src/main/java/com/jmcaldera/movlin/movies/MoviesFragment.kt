@@ -17,6 +17,7 @@ import com.jmcaldera.movlin.BaseFragment
 import com.jmcaldera.movlin.movies.adapter.CarouselAdapter
 
 import com.jmcaldera.movlin.R
+import com.jmcaldera.movlin.details.MovieDetailsActivity
 import com.jmcaldera.movlin.di.ApplicationComponent
 import com.jmcaldera.movlin.di.subcomponent.movies.MoviesModule
 import com.jmcaldera.movlin.model.MovieViewModel
@@ -47,19 +48,19 @@ class MoviesFragment : BaseFragment(), MoviesContract.View {
     private fun initViews() {
         list_now_playing.layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.HORIZONTAL, false)
-        list_now_playing.adapter = CarouselAdapter()
+        list_now_playing.adapter = CarouselAdapter { presenter.onMovieClick(it) }
 
         list_top_rated.layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.HORIZONTAL, false)
-        list_top_rated.adapter = CarouselAdapter()
+        list_top_rated.adapter = CarouselAdapter { presenter.onMovieClick(it) }
 
         list_popular.layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.HORIZONTAL, false)
-        list_popular.adapter = CarouselAdapter()
+        list_popular.adapter = CarouselAdapter { presenter.onMovieClick(it) }
 
         list_upcoming.layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.HORIZONTAL, false)
-        list_upcoming.adapter = CarouselAdapter()
+        list_upcoming.adapter = CarouselAdapter { presenter.onMovieClick(it) }
 
     }
 
@@ -70,16 +71,16 @@ class MoviesFragment : BaseFragment(), MoviesContract.View {
         }
     }
 
-    override fun showLoading(show: Boolean) {
-        if (show) {
-            movies_container.isGone = true
-            progress_bar.isVisible = true
-            progress_bar.show()
-        } else {
-            progress_bar.hide()
-            progress_bar.isGone = true
-            movies_container.isVisible = true
-        }
+    override fun showLoading() {
+        movies_container.isGone = true
+        progress_bar.isVisible = true
+        progress_bar.show()
+    }
+
+    override fun hideLoading() {
+        progress_bar.hide()
+        progress_bar.isGone = true
+        movies_container.isVisible = true
     }
 
     override fun showUnauthorizedError() {
@@ -106,9 +107,14 @@ class MoviesFragment : BaseFragment(), MoviesContract.View {
         (list_upcoming.adapter as CarouselAdapter).movieList = movies
     }
 
-    override fun isActive(): Boolean {
-        return isAdded
+    override fun navigateToMovieDetails(id: Int) {
+        activity?.let {
+            val intent = MovieDetailsActivity.newIntent(it, id)
+            startActivity(intent)
+        }
     }
+
+    override fun isActive(): Boolean = isAdded
 
     override fun injectDependencies(appComponent: ApplicationComponent) {
         appComponent.plus(MoviesModule()).injectTo(this)

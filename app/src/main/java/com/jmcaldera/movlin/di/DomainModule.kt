@@ -1,10 +1,7 @@
 package com.jmcaldera.movlin.di
 
 import com.jmcaldera.domain.repository.MoviesRepository
-import com.jmcaldera.domain.usecase.GetNowPlayingMoviesUseCase
-import com.jmcaldera.domain.usecase.GetPopularMoviesUseCase
-import com.jmcaldera.domain.usecase.GetTopRatedMoviesUseCase
-import com.jmcaldera.domain.usecase.GetUpcomingMoviesUseCase
+import com.jmcaldera.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 
@@ -29,4 +26,8 @@ class DomainModule {
     @Provides
     fun provideUpcomingMoviesUseCase(moviesRepository: MoviesRepository): GetUpcomingMoviesUseCase =
             GetUpcomingMoviesUseCase(moviesRepository)
+
+    @Provides
+    fun provideGetMovieDetailsUseCase(moviesRepository: MoviesRepository): GetMovieDetailsUseCase =
+            GetMovieDetailsUseCase(moviesRepository)
 }

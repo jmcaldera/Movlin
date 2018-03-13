@@ -23,7 +23,7 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
 
     override suspend fun start() {
         if (view.isActive()) {
-            view.showLoading(true)
+            view.showLoading()
         }
         val nowPlayingResult = getNowPlayingMoviesUseCase.execute()
         val popularResult = getPopularMoviesUseCase.execute()
@@ -35,7 +35,7 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
                     onSuccess = { nowPlayingList ->
                         if (view.isActive()) {
                             view.showNowPlayingMovies(nowPlayingList.movies.map {
-                                MovieViewModel(it.title, it.posterPath)
+                                MovieViewModel(it.id, it.title, it.posterPath)
                             })
                         }
                     },
@@ -48,7 +48,7 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
                     onSuccess = { popularList ->
                         if (view.isActive()) {
                             view.showPopularMovies(popularList.movies.map {
-                                MovieViewModel(it.title, it.posterPath)
+                                MovieViewModel(it.id, it.title, it.posterPath)
                             })
                         }
                     },
@@ -61,7 +61,7 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
                     onSuccess = { topRatedList ->
                         if (view.isActive()) {
                             view.showTopRatedMovies(topRatedList.movies.map {
-                                MovieViewModel(it.title, it.posterPath)
+                                MovieViewModel(it.id, it.title, it.posterPath)
                             })
                         }
                     },
@@ -74,7 +74,7 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
                     onSuccess = { upcomingList ->
                         if (view.isActive()) {
                             view.showUpcomingMovies(upcomingList.movies.map {
-                                MovieViewModel(it.title, it.posterPath)
+                                MovieViewModel(it.id, it.title, it.posterPath)
                             })
                         }
                     },
@@ -82,7 +82,7 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
             )
         }
         if (view.isActive()) {
-            view.showLoading(false)
+            view.hideLoading()
         }
     }
 
@@ -93,5 +93,9 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
                 is NotFoundError -> view.showNotFoundError()
             }
         }
+    }
+
+    override fun onMovieClick(movie: MovieViewModel) {
+        if (view.isActive()) view.navigateToMovieDetails(movie.id)
     }
 }

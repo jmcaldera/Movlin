@@ -14,14 +14,15 @@ import kotlin.properties.Delegates
 /**
  * Created by jmcaldera on 08-03-18.
  */
-class CarouselAdapter() : RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
+class CarouselAdapter(private val itemClick: (MovieViewModel) -> Unit) :
+        RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
 
-    internal var movieList: List<MovieViewModel> by Delegates.observable(emptyList()) {
-        _, _, _ -> notifyDataSetChanged()
+    internal var movieList: List<MovieViewModel> by Delegates.observable(emptyList()) { _, _, _ ->
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(parent?.inflate(R.layout.item_movie_carousel)!!)
+        return ViewHolder(parent?.inflate(R.layout.item_movie_carousel)!!, itemClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
@@ -31,10 +32,12 @@ class CarouselAdapter() : RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
     override fun getItemCount(): Int = movieList.size
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, private val itemClick: (MovieViewModel) -> Unit) :
+            RecyclerView.ViewHolder(itemView) {
 
         fun bind(movie: MovieViewModel) = with(movie) {
             itemView.image_poster.loadFromUrl(TmdbEndpoints.POSTER_URL_W185 + posterPath)
+            itemView.setOnClickListener { itemClick(this) }
         }
     }
 }
