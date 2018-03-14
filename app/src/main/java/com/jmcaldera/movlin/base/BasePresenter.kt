@@ -7,6 +7,4 @@ interface BasePresenter<T: BaseView> {
 
     var view: T
 
-    suspend fun start()
-
 }

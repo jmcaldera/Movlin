@@ -16,10 +16,6 @@ class MovieDetailsPresenter(private val getMovieDetailsUseCase: GetMovieDetailsU
 
     override lateinit var view: MovieDetailsContract.View
 
-    override suspend fun start() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override suspend fun loadMovieDetails(id: Int) {
         if (view.isActive()) {
             view.showLoading()

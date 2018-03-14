@@ -23,6 +23,7 @@ interface MoviesContract {
     }
 
     interface Presenter : BasePresenter<View> {
+        suspend fun start()
         fun onMovieClick(movie: MovieViewModel)
     }
 }
