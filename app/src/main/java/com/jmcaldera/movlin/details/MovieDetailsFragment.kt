@@ -3,6 +3,7 @@ package com.jmcaldera.movlin.details
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import androidx.view.isGone
 import androidx.view.isVisible
@@ -11,11 +12,13 @@ import com.jmcaldera.data.remote.TmdbEndpoints.Companion.BACKDROP_URL_W300
 import com.jmcaldera.movlin.BaseFragment
 
 import com.jmcaldera.movlin.R
+import com.jmcaldera.movlin.details.adapter.ImagesCarouselAdapter
 import com.jmcaldera.movlin.di.ApplicationComponent
 import com.jmcaldera.movlin.di.subcomponent.details.DetailsModule
 import com.jmcaldera.movlin.extension.loadFromUrl
 import com.jmcaldera.movlin.model.MovieDetailsViewModel
 import kotlinx.android.synthetic.main.fragment_movie_details.*
+import kotlinx.android.synthetic.main.layout_details_images.*
 import kotlinx.android.synthetic.main.layout_details_summary.*
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
@@ -43,6 +46,9 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
         if (arguments != null) {
             movieId = arguments!!.getInt(ARG_MOVIE_ID, 0)
         }
+        listImages.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        listImages.adapter = ImagesCarouselAdapter()
+
         presenter.view = this
     }
 
@@ -72,6 +78,8 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
             textVoteCount.text = voteCount.toString()
             movieShortSummary.text = overview
             backdropPath?.let { image_header.loadFromUrl(BACKDROP_URL_W300 + it) }
+
+            (listImages.adapter as ImagesCarouselAdapter).imageList = images.backdrops
         }
 
     }

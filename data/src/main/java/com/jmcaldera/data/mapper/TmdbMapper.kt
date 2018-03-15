@@ -29,10 +29,15 @@ fun convertMovieDetailsToDomain(movie: TmdbMovieDetails): MovieDetails {
     return movie.let {
         MovieDetails(it.voteCount, it.budge, it.id, it.video, it.voteAverage, it.title, it.popularity, it.posterPath,
                 it.originalTitle, it.originalTitle, genresMapper(it.genres), it.backdropPath, it.adult,
-                it.overview, it.releaseDate, it.runtime, it.revenue)
+                it.overview, it.releaseDate, it.runtime, it.revenue, imagesMapper(it.images))
     }
 }
 
-fun genresMapper(genres: List<TmdbGenre>) : List<Genre> {
+private fun genresMapper(genres: List<TmdbGenre>) : List<Genre> {
     return genres.map { Genre(it.id, it.name) }
+}
+
+private fun imagesMapper(images: TmdbImages): Images = with(images) {
+    Images(backdrops.map { image -> MovieImage(image.aspectRatio, image.filePath) },
+            posters.map { image -> MovieImage(image.aspectRatio, image.filePath) })
 }

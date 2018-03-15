@@ -1,7 +1,5 @@
 package com.jmcaldera.movlin.model
 
-import com.jmcaldera.domain.model.Genre
-
 /**
  * Created by jmcaldera on 08-03-18.
  */
@@ -18,6 +16,11 @@ data class MovieDetailsViewModel(val id: Int,
                                  val overview: String,
                                  val releaseDate: String,
                                  val runtime: Int,
-                                 val revenue: Long)
+                                 val revenue: Long,
+                                 val images: ImagesViewModel)
 
 data class GenreViewModel(val id: Int, val name: String)
+
+data class ImageViewModel(val filePath: String)
+
+data class ImagesViewModel(val backdrops: List<ImageViewModel>, val posters: List<ImageViewModel>)

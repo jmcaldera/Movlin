@@ -14,6 +14,10 @@ class TmdbEndpoints {
         const val POPULAR_MOVIES = API_VERSION + MOVIE + "/popular"
         const val DETAILS_MOVIE = API_VERSION + MOVIE + "/"
 
+        const val APPEND_TO_RESPONSE = "append_to_response="
+        const val APPEND_IMAGES = "images"
+        const val APPEND_VIDEOS = "videos"
+
         const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p/"
 
         const val DEFAULT_POSTER_SIZE = "w500"

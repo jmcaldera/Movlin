@@ -96,13 +96,10 @@
                 android:id="@+id/movieDetailsContainer"
                 layout="@layout/layout_details_summary" />
 
-            <!--<TextView-->
-            <!--android:id="@+id/movieSummary"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:padding="16dp"-->
-            <!--tools:text="@tools:sample/lorem/random" />-->
-
+            <include
+                android:id="@+id/movieImagesContainer"
+                layout="@layout/layout_details_images"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

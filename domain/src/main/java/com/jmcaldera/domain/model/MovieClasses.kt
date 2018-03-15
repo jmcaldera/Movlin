@@ -69,8 +69,13 @@ data class MovieDetails(
         val overview: String,
         val releaseDate: String,
         val runtime: Int,
-        val revenue: Long
+        val revenue: Long,
+        val images: Images
 
 )
 
 data class Genre(val id: Int, val name: String)
+
+data class MovieImage(val aspectRatio: Double, val filePath: String)
+
+data class Images(val backdrops: List<MovieImage>, val posters: List<MovieImage>)

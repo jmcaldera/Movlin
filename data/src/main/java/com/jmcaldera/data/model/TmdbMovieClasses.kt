@@ -72,7 +72,13 @@ data class TmdbMovieDetails(
         @Expose val overview: String,
         @Expose @SerializedName("release_date") val releaseDate: String,
         @Expose val runtime: Int,
-        @Expose val revenue: Long
+        @Expose val revenue: Long,
+        @Expose val images: TmdbImages
 )
 
 data class TmdbGenre(@Expose val id: Int, @Expose val name: String)
+
+data class TmdbImage(@Expose @SerializedName("aspect_ratio") val aspectRatio: Double,
+                     @Expose @SerializedName("file_path") val filePath: String)
+
+data class TmdbImages(@Expose val backdrops: List<TmdbImage>, @Expose val posters: List<TmdbImage>)
