@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.jmcaldera.movlin.BaseActivity
 import com.jmcaldera.movlin.BaseFragment
 import com.jmcaldera.movlin.R
+import kotlinx.android.synthetic.main.toolbar.*
 
 class MoviesActivity : BaseActivity() {
 
@@ -14,5 +15,6 @@ class MoviesActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movies)
+        setSupportActionBar(toolbar)
     }
 }
