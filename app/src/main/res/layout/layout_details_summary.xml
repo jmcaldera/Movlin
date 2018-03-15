@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/moviePoster"
+        android:layout_width="120dp"
+        android:layout_height="180dp"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="2:3"
+        app:layout_constraintEnd_toStartOf="@id/movieShortSummary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ratingIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_star_24dp"
+        app:layout_constraintEnd_toStartOf="@+id/textVoteAverage"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/moviePoster"
+        app:layout_constraintTop_toTopOf="@+id/moviePoster" />
+
+    <TextView
+        android:id="@+id/textVoteAverage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toTopOf="@id/textVoteCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ratingIcon"
+        app:layout_constraintTop_toTopOf="@id/ratingIcon"
+        tools:text="7.5/10" />
+
+    <TextView
+        android:id="@+id/textVoteCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/ratingIcon"
+        app:layout_constraintStart_toStartOf="@id/textVoteAverage"
+        app:layout_constraintTop_toBottomOf="@id/textVoteAverage"
+        tools:text="10.000" />
+
+    <ImageView
+        android:id="@+id/votesIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_group_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/textVoteCount"
+        app:layout_constraintStart_toEndOf="@id/textVoteCount"
+        app:layout_constraintTop_toTopOf="@id/textVoteCount" />
+
+    <TextView
+        android:id="@+id/movieShortSummary"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="@id/moviePoster"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/moviePoster"
+        app:layout_constraintTop_toBottomOf="@+id/ratingIcon"
+        tools:text="@tools:sample/lorem/random" />
+
+</android.support.constraint.ConstraintLayout>

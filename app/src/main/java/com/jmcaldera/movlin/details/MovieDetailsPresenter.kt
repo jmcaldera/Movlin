@@ -6,7 +6,7 @@ import com.jmcaldera.domain.model.MovieError
 import com.jmcaldera.domain.model.NotFoundError
 import com.jmcaldera.domain.model.UnauthorizedError
 import com.jmcaldera.domain.usecase.GetMovieDetailsUseCase
-import com.jmcaldera.movlin.model.MovieDetailsViewModel
+import com.jmcaldera.movlin.model.mapper.convertMovieDetailsFromDomain
 
 /**
  * Created by jmcaldera on 13-03-18.
@@ -27,7 +27,7 @@ class MovieDetailsPresenter(private val getMovieDetailsUseCase: GetMovieDetailsU
             result.fold(
                     onSuccess = { movie ->
                         if (view.isActive()) {
-                            view.showDetails(MovieDetailsViewModel(movie.id, movie.title, movie.posterPath))
+                            view.showDetails(convertMovieDetailsFromDomain(movie))
                         }
                     },
                     onError = { movieError -> handleError(movieError) }
