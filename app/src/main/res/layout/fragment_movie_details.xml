@@ -101,6 +101,11 @@
                 layout="@layout/layout_details_images"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+            <include
+                android:id="@+id/movieCastContainer"
+                layout="@layout/layout_details_credits"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

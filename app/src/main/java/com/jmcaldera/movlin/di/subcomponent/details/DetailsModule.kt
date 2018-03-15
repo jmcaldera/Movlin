@@ -1,5 +1,6 @@
 package com.jmcaldera.movlin.di.subcomponent.details
 
+import com.jmcaldera.domain.usecase.GetMovieCreditsUseCase
 import com.jmcaldera.domain.usecase.GetMovieDetailsUseCase
 import com.jmcaldera.movlin.details.MovieDetailsContract
 import com.jmcaldera.movlin.details.MovieDetailsPresenter
@@ -13,6 +14,8 @@ import dagger.Provides
 class DetailsModule {
 
     @Provides
-    fun provideMovieDetailsPresenter(getMovieDetailsUseCase: GetMovieDetailsUseCase):
-            MovieDetailsContract.Presenter = MovieDetailsPresenter(getMovieDetailsUseCase)
+    fun provideMovieDetailsPresenter(getMovieDetailsUseCase: GetMovieDetailsUseCase,
+                                     getMovieCreditsUseCase: GetMovieCreditsUseCase):
+            MovieDetailsContract.Presenter =
+            MovieDetailsPresenter(getMovieDetailsUseCase, getMovieCreditsUseCase)
 }

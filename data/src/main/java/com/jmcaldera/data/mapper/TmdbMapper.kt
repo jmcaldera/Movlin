@@ -41,3 +41,9 @@ private fun imagesMapper(images: TmdbImages): Images = with(images) {
     Images(backdrops.map { image -> MovieImage(image.aspectRatio, image.filePath) },
             posters.map { image -> MovieImage(image.aspectRatio, image.filePath) })
 }
+
+fun convertCreditsToDomain(credits: TmdbCredits): Credits = with(credits) {
+    Credits(id, cast.map { member -> CastMember(member.id, member.name, member.character, member.profilePath) },
+            crew.map { member -> CrewMember(member.id, member.name, member.job,
+                    member.department, member.profilePath) })
+}

@@ -2,6 +2,7 @@ package com.jmcaldera.movlin.details
 
 import com.jmcaldera.movlin.base.BasePresenter
 import com.jmcaldera.movlin.base.BaseView
+import com.jmcaldera.movlin.model.CastMemberViewModel
 import com.jmcaldera.movlin.model.MovieDetailsViewModel
 
 /**
@@ -11,6 +12,7 @@ interface MovieDetailsContract {
 
     interface View : BaseView {
         fun showDetails(movie: MovieDetailsViewModel)
+        fun showCast(castList: List<CastMemberViewModel>)
         fun showLoading()
         fun hideLoading()
         fun showUnauthorizedError()

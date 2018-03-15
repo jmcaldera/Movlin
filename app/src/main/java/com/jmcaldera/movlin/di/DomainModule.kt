@@ -30,4 +30,8 @@ class DomainModule {
     @Provides
     fun provideGetMovieDetailsUseCase(moviesRepository: MoviesRepository): GetMovieDetailsUseCase =
             GetMovieDetailsUseCase(moviesRepository)
+
+    @Provides
+    fun provideGetMovieCreditsUseCase(moviesRepository: MoviesRepository) : GetMovieCreditsUseCase =
+            GetMovieCreditsUseCase(moviesRepository)
 }

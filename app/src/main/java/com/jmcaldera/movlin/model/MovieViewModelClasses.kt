@@ -24,3 +24,12 @@ data class GenreViewModel(val id: Int, val name: String)
 data class ImageViewModel(val filePath: String)
 
 data class ImagesViewModel(val backdrops: List<ImageViewModel>, val posters: List<ImageViewModel>)
+
+data class CastMemberViewModel(val id: Int, val name: String, val character: String,
+                               val profilePath: String?)
+
+data class CrewMemberViewModel(val id: Int, val name: String, val job: String,
+                               val department: String, val profilePath: String?)
+
+data class CreditsViewModel(val id: Int, val cast: List<CastMemberViewModel>,
+                            val crew: List<CrewMemberViewModel>)

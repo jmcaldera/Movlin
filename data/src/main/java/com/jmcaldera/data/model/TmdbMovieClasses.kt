@@ -82,3 +82,14 @@ data class TmdbImage(@Expose @SerializedName("aspect_ratio") val aspectRatio: Do
                      @Expose @SerializedName("file_path") val filePath: String)
 
 data class TmdbImages(@Expose val backdrops: List<TmdbImage>, @Expose val posters: List<TmdbImage>)
+
+data class TmdbCastMember(@Expose val id: Int, @Expose val name: String, @Expose val character: String,
+                          @Expose @SerializedName("profile_path") val profilePath: String?)
+
+data class TmdbCrewMember(@Expose val id: Int, @Expose val name: String,
+                          @Expose val job: String,
+                          @Expose val department: String,
+                          @Expose @SerializedName("profile_path") val profilePath: String?)
+
+data class TmdbCredits(@Expose val id: Int, @Expose val cast: List<TmdbCastMember>,
+                       @Expose val crew: List<TmdbCrewMember>)

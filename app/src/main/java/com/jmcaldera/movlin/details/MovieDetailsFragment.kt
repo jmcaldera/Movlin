@@ -12,12 +12,15 @@ import com.jmcaldera.data.remote.TmdbEndpoints.Companion.BACKDROP_URL_W300
 import com.jmcaldera.movlin.BaseFragment
 
 import com.jmcaldera.movlin.R
+import com.jmcaldera.movlin.details.adapter.CastCarouselAdapter
 import com.jmcaldera.movlin.details.adapter.ImagesCarouselAdapter
 import com.jmcaldera.movlin.di.ApplicationComponent
 import com.jmcaldera.movlin.di.subcomponent.details.DetailsModule
 import com.jmcaldera.movlin.extension.loadFromUrl
+import com.jmcaldera.movlin.model.CastMemberViewModel
 import com.jmcaldera.movlin.model.MovieDetailsViewModel
 import kotlinx.android.synthetic.main.fragment_movie_details.*
+import kotlinx.android.synthetic.main.layout_details_credits.*
 import kotlinx.android.synthetic.main.layout_details_images.*
 import kotlinx.android.synthetic.main.layout_details_summary.*
 import kotlinx.coroutines.experimental.android.UI
@@ -48,6 +51,9 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
         }
         listImages.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         listImages.adapter = ImagesCarouselAdapter()
+
+        listCast.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        listCast.adapter = CastCarouselAdapter()
 
         presenter.view = this
     }
@@ -84,8 +90,13 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
 
     }
 
+    override fun showCast(castList: List<CastMemberViewModel>) {
+        (listCast.adapter as CastCarouselAdapter).castList = castList
+    }
+
     override fun showLoading() {
         movieDetailsContainer.isGone = true
+        movieCastContainer.isGone = true
         movieShortInfo.isGone = true
         progressBar.isVisible = true
         progressBar.show()
@@ -95,6 +106,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
         progressBar.hide()
         progressBar.isGone = true
         movieDetailsContainer.isVisible = true
+        movieCastContainer.isVisible = true
         movieShortInfo.isVisible = true
     }
 

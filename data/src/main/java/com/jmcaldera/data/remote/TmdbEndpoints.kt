@@ -8,6 +8,7 @@ class TmdbEndpoints {
         const val BASE_URL = "https://api.themoviedb.org/"
         private const val API_VERSION = "3"
         private const val MOVIE = "/movie"
+        const val CREDITS = "/credits"
         const val NOW_PLAYING_MOVIES = API_VERSION + MOVIE + "/now_playing"
         const val UPCOMING_MOVIES = API_VERSION + MOVIE + "/upcoming"
         const val TOP_RATES_MOVIES = API_VERSION + MOVIE + "/top_rated"

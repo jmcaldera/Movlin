@@ -1,5 +1,6 @@
 package com.jmcaldera.movlin.model.mapper
 
+import com.jmcaldera.domain.model.Credits
 import com.jmcaldera.domain.model.Genre
 import com.jmcaldera.domain.model.Images
 import com.jmcaldera.domain.model.MovieDetails
@@ -19,4 +20,11 @@ fun convertGenreFromDomain(genres: List<Genre>): List<GenreViewModel> =
 private fun convertImagesFromDomain(images: Images): ImagesViewModel = with(images) {
     ImagesViewModel(backdrops.map { image -> ImageViewModel(image.filePath) },
             posters.map { image -> ImageViewModel(image.filePath) })
+}
+
+fun convertCreditsFromDomain(credits: Credits) : CreditsViewModel = with(credits) {
+    CreditsViewModel(id, cast.map { member -> CastMemberViewModel(member.id, member.name,
+            member.character, member.profilePath) },
+            crew.map { member -> CrewMemberViewModel(member.id, member.name, member.job,
+                    member.department, member.profilePath) })
 }

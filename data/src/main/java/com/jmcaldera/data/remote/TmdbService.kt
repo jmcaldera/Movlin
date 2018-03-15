@@ -7,6 +7,7 @@ import com.jmcaldera.data.remote.TmdbEndpoints.Companion.UPCOMING_MOVIES
 import com.jmcaldera.data.model.*
 import com.jmcaldera.data.remote.TmdbEndpoints.Companion.APPEND_IMAGES
 import com.jmcaldera.data.remote.TmdbEndpoints.Companion.APPEND_TO_RESPONSE
+import com.jmcaldera.data.remote.TmdbEndpoints.Companion.CREDITS
 import com.jmcaldera.data.remote.TmdbEndpoints.Companion.DETAILS_MOVIE
 import retrofit2.Call
 import retrofit2.http.GET
@@ -30,5 +31,8 @@ interface TmdbService {
     fun getPopularMovies(): Call<TmdbTopRatedPopular>
 
     @GET("$DETAILS_MOVIE{id}?$APPEND_TO_RESPONSE$APPEND_IMAGES")
-    fun getMovieDetails(@Path("id") movieId : Int) : Call<TmdbMovieDetails>
+    fun getMovieDetails(@Path("id") movieId: Int): Call<TmdbMovieDetails>
+
+    @GET("$DETAILS_MOVIE{id}$CREDITS")
+    fun getMovieCredits(@Path("id") movieId: Int): Call<TmdbCredits>
 }

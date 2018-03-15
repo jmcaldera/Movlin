@@ -34,20 +34,20 @@ data class TopRatedPopular(
 //)
 
 data class Movie(
-		val voteCount: Int,
-		val id: Int,
-		val video: Boolean,
-		val voteAverage: Double,
-		val title: String,
-		val popularity: Double,
-		val posterPath: String,
-		val originalLanguage: String,
-		val originalTitle: String,
-		val genreIds: List<Int>,
-		val backdropPath: String? = null,
-		val adult: Boolean,
-		val overview: String,
-		val releaseDate: String
+        val voteCount: Int,
+        val id: Int,
+        val video: Boolean,
+        val voteAverage: Double,
+        val title: String,
+        val popularity: Double,
+        val posterPath: String,
+        val originalLanguage: String,
+        val originalTitle: String,
+        val genreIds: List<Int>,
+        val backdropPath: String? = null,
+        val adult: Boolean,
+        val overview: String,
+        val releaseDate: String
 )
 
 data class Dates(val maximum: String, val minimum: String)
@@ -79,3 +79,9 @@ data class Genre(val id: Int, val name: String)
 data class MovieImage(val aspectRatio: Double, val filePath: String)
 
 data class Images(val backdrops: List<MovieImage>, val posters: List<MovieImage>)
+
+data class CastMember(val id: Int, val name: String, val character: String, val profilePath: String?)
+
+data class CrewMember(val id: Int, val name: String, val job: String, val department: String, val profilePath: String?)
+
+data class Credits(val id: Int, val cast: List<CastMember>, val crew: List<CrewMember>)
