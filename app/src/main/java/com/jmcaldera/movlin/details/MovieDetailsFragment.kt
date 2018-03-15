@@ -96,6 +96,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
 
     override fun showLoading() {
         movieDetailsContainer.isGone = true
+        movieImagesContainer.isGone = true
         movieCastContainer.isGone = true
         movieShortInfo.isGone = true
         progressBar.isVisible = true
@@ -106,6 +107,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
         progressBar.hide()
         progressBar.isGone = true
         movieDetailsContainer.isVisible = true
+        movieImagesContainer.isVisible = true
         movieCastContainer.isVisible = true
         movieShortInfo.isVisible = true
     }
