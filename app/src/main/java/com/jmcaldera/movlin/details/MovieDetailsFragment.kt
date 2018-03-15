@@ -7,6 +7,7 @@ import android.view.View
 import androidx.view.isGone
 import androidx.view.isVisible
 import com.jmcaldera.data.remote.TmdbEndpoints
+import com.jmcaldera.data.remote.TmdbEndpoints.Companion.BACKDROP_URL_W300
 import com.jmcaldera.movlin.BaseFragment
 
 import com.jmcaldera.movlin.R
@@ -31,7 +32,7 @@ import javax.inject.Inject
 class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
 
     @Inject
-    lateinit var presenter : MovieDetailsContract.Presenter
+    lateinit var presenter: MovieDetailsContract.Presenter
 
     override fun fragmentId(): Int = R.layout.fragment_movie_details
 
@@ -63,13 +64,14 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
             val year = outputFormat.format(date)
             movieDate.text = year
 
-            movieRuntime.text = String.format("%2dh %02dmin", runtime/60, runtime % 60)
+            movieRuntime.text = String.format("%2dh %02dmin", runtime / 60, runtime % 60)
             movieGenres.text = genres.map { it.name }.toString()
 
             moviePoster.loadFromUrl(TmdbEndpoints.POSTER_URL_W185 + posterPath)
             textVoteAverage.text = "$voteAverage/10"
             textVoteCount.text = voteCount.toString()
             movieShortSummary.text = overview
+            backdropPath?.let { image_header.loadFromUrl(BACKDROP_URL_W300 + it) }
         }
 
     }
