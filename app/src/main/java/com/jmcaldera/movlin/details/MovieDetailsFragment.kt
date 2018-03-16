@@ -83,7 +83,12 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
             textVoteAverage.text = "$voteAverage/10"
             textVoteCount.text = voteCount.toString()
             movieShortSummary.text = overview
-            backdropPath?.let { image_header.loadFromUrl(BACKDROP_URL_W300 + it) }
+
+            if (backdropPath != null) {
+                image_header.loadFromUrl(BACKDROP_URL_W300 + backdropPath)
+            } else {
+                image_header.isGone = true
+            }
 
             (listImages.adapter as ImagesCarouselAdapter).imageList = images.backdrops
         }
