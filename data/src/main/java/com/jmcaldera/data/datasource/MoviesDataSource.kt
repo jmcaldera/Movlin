@@ -19,4 +19,6 @@ interface MoviesDataSource {
     suspend fun requestMovieDetails(movieId: Int): IOResult<MovieDetails, MovieError>
 
     suspend fun requestMovieCredits(movieId: Int): IOResult<Credits, MovieError>
+
+    suspend fun requestPersonDetails(personId: Int): IOResult<Person, MovieError>
 }

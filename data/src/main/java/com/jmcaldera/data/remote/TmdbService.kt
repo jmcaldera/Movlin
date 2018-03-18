@@ -9,6 +9,7 @@ import com.jmcaldera.data.remote.TmdbEndpoints.Companion.APPEND_IMAGES
 import com.jmcaldera.data.remote.TmdbEndpoints.Companion.APPEND_TO_RESPONSE
 import com.jmcaldera.data.remote.TmdbEndpoints.Companion.CREDITS
 import com.jmcaldera.data.remote.TmdbEndpoints.Companion.DETAILS_MOVIE
+import com.jmcaldera.data.remote.TmdbEndpoints.Companion.DETAILS_PERSON
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -35,4 +36,7 @@ interface TmdbService {
 
     @GET("$DETAILS_MOVIE{id}$CREDITS")
     fun getMovieCredits(@Path("id") movieId: Int): Call<TmdbCredits>
+
+    @GET("$DETAILS_PERSON{id}")
+    fun getPersonDetails(@Path("id") personId: Int): Call<TmdbPerson>
 }

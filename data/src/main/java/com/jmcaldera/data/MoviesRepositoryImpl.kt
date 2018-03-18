@@ -33,4 +33,8 @@ class MoviesRepositoryImpl(private val remoteDataSource: MoviesDataSource) : Mov
     override suspend fun getMovieCredits(movieId: Int): IOResult<Credits, MovieError> {
         return remoteDataSource.requestMovieCredits(movieId)
     }
+
+    override suspend fun getPersonDetails(personId: Int): IOResult<Person, MovieError> {
+        return remoteDataSource.requestPersonDetails(personId)
+    }
 }

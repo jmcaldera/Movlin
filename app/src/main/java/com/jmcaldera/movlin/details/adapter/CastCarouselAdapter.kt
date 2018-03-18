@@ -14,14 +14,15 @@ import kotlin.properties.Delegates
 /**
  * Created by jmcaldera on 15-03-18.
  */
-class CastCarouselAdapter: RecyclerView.Adapter<CastCarouselAdapter.ViewHolder>() {
+class CastCarouselAdapter(private val itemClick: (CastMemberViewModel) -> Unit) :
+        RecyclerView.Adapter<CastCarouselAdapter.ViewHolder>() {
 
     internal var castList: List<CastMemberViewModel> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(parent?.inflate(R.layout.item_cast_carousel)!!)
+        return ViewHolder(parent?.inflate(R.layout.item_cast_carousel)!!, itemClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
@@ -30,12 +31,14 @@ class CastCarouselAdapter: RecyclerView.Adapter<CastCarouselAdapter.ViewHolder>(
 
     override fun getItemCount(): Int = castList.size
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, private val itemClick: (CastMemberViewModel) -> Unit) :
+            RecyclerView.ViewHolder(itemView) {
 
         fun bind(castMember: CastMemberViewModel) = with(castMember) {
             itemView.imageProfile.loadFromUrl(TmdbEndpoints.PROFILE_URL_W185 + profilePath)
             itemView.nameProfile.text = name
             itemView.nameCharacter.text = character
+            itemView.setOnClickListener { itemClick(this) }
         }
 
     }

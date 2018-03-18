@@ -1,9 +1,6 @@
 package com.jmcaldera.movlin.model.mapper
 
-import com.jmcaldera.domain.model.Credits
-import com.jmcaldera.domain.model.Genre
-import com.jmcaldera.domain.model.Images
-import com.jmcaldera.domain.model.MovieDetails
+import com.jmcaldera.domain.model.*
 import com.jmcaldera.movlin.model.*
 
 /**
@@ -27,4 +24,8 @@ fun convertCreditsFromDomain(credits: Credits) : CreditsViewModel = with(credits
             member.character, member.profilePath) },
             crew.map { member -> CrewMemberViewModel(member.id, member.name, member.job,
                     member.department, member.profilePath) })
+}
+
+inline fun convertPersonFromDomain(person: Person): PersonViewModel = with(person) {
+    PersonViewModel(id, name, birthday, deathday, placeOfBirth, biography, alsoKnownAs, profilePath)
 }

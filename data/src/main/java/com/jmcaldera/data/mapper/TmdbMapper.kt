@@ -47,3 +47,7 @@ fun convertCreditsToDomain(credits: TmdbCredits): Credits = with(credits) {
             crew.map { member -> CrewMember(member.id, member.name, member.job,
                     member.department, member.profilePath) })
 }
+
+fun convertPersonToDomain(person: TmdbPerson): Person = with(person) {
+    Person(id, name, birthday, deathday, placeOfBirth, biography, alsoKnownAs, profilePath)
+}

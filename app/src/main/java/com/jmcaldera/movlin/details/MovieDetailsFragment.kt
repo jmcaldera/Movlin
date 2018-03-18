@@ -19,6 +19,7 @@ import com.jmcaldera.movlin.di.subcomponent.details.DetailsModule
 import com.jmcaldera.movlin.extension.loadFromUrl
 import com.jmcaldera.movlin.model.CastMemberViewModel
 import com.jmcaldera.movlin.model.MovieDetailsViewModel
+import com.jmcaldera.movlin.people.PeopleActivity
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.layout_details_credits.*
 import kotlinx.android.synthetic.main.layout_details_images.*
@@ -53,7 +54,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
         listImages.adapter = ImagesCarouselAdapter()
 
         listCast.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        listCast.adapter = CastCarouselAdapter()
+        listCast.adapter = CastCarouselAdapter { presenter.onCastMemberClicked(it) }
 
         presenter.view = this
     }
@@ -123,6 +124,13 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
 
     override fun showNotFoundError() {
         activity?.toast("Not Found!")
+    }
+
+    override fun navigateToPersonDetails(id: Int) {
+        activity?.let {
+            val intent = PeopleActivity.newIntent(it, id)
+            startActivity(intent)
+        }
     }
 
     override fun isActive(): Boolean = isAdded

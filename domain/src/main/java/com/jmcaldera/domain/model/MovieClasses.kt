@@ -85,3 +85,14 @@ data class CastMember(val id: Int, val name: String, val character: String, val 
 data class CrewMember(val id: Int, val name: String, val job: String, val department: String, val profilePath: String?)
 
 data class Credits(val id: Int, val cast: List<CastMember>, val crew: List<CrewMember>)
+
+data class Person(
+        val id: Int,
+        val name: String,
+        val birthday: String,
+        val deathday: String? = null,
+        val placeOfBirth: String,
+        val biography: String,
+        val alsoKnownAs: List<String>,
+        val profilePath: String?
+)

@@ -4,6 +4,8 @@ import com.jmcaldera.movlin.di.subcomponent.details.DetailsComponent
 import com.jmcaldera.movlin.di.subcomponent.details.DetailsModule
 import com.jmcaldera.movlin.di.subcomponent.movies.MoviesComponent
 import com.jmcaldera.movlin.di.subcomponent.movies.MoviesModule
+import com.jmcaldera.movlin.di.subcomponent.people.PeopleComponent
+import com.jmcaldera.movlin.di.subcomponent.people.PeopleModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -16,4 +18,5 @@ interface ApplicationComponent {
 
     fun plus(module: MoviesModule): MoviesComponent
     fun plus(module: DetailsModule): DetailsComponent
+    fun plus(module: PeopleModule): PeopleComponent
 }

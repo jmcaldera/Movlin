@@ -7,6 +7,7 @@ import com.jmcaldera.domain.model.NotFoundError
 import com.jmcaldera.domain.model.UnauthorizedError
 import com.jmcaldera.domain.usecase.GetMovieCreditsUseCase
 import com.jmcaldera.domain.usecase.GetMovieDetailsUseCase
+import com.jmcaldera.movlin.model.CastMemberViewModel
 import com.jmcaldera.movlin.model.mapper.convertCreditsFromDomain
 import com.jmcaldera.movlin.model.mapper.convertMovieDetailsFromDomain
 
@@ -60,5 +61,9 @@ class MovieDetailsPresenter(private val getMovieDetailsUseCase: GetMovieDetailsU
                 is NotFoundError -> view.showNotFoundError()
             }
         }
+    }
+
+    override fun onCastMemberClicked(castMember: CastMemberViewModel) {
+        if (view.isActive()) view.navigateToPersonDetails(castMember.id)
     }
 }

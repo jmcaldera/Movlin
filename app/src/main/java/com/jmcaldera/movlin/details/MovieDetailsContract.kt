@@ -17,10 +17,12 @@ interface MovieDetailsContract {
         fun hideLoading()
         fun showUnauthorizedError()
         fun showNotFoundError()
+        fun navigateToPersonDetails(id: Int)
         fun isActive(): Boolean
     }
 
     interface Presenter : BasePresenter<View> {
         suspend fun loadMovieDetails(id: Int)
+        fun onCastMemberClicked(castMember: CastMemberViewModel)
     }
 }

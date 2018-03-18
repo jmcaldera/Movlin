@@ -33,3 +33,14 @@ data class CrewMemberViewModel(val id: Int, val name: String, val job: String,
 
 data class CreditsViewModel(val id: Int, val cast: List<CastMemberViewModel>,
                             val crew: List<CrewMemberViewModel>)
+
+data class PersonViewModel(
+        val id: Int,
+        val name: String,
+        val birthday: String,
+        val deathday: String? = null,
+        val placeOfBirth: String,
+        val biography: String,
+        val alsoKnownAs: List<String>,
+        val profilePath: String?
+)

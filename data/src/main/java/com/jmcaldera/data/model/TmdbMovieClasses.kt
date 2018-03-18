@@ -93,3 +93,14 @@ data class TmdbCrewMember(@Expose val id: Int, @Expose val name: String,
 
 data class TmdbCredits(@Expose val id: Int, @Expose val cast: List<TmdbCastMember>,
                        @Expose val crew: List<TmdbCrewMember>)
+
+data class TmdbPerson(
+        @Expose val id: Int,
+        @Expose val name: String,
+        @Expose val birthday: String,
+        @Expose val deathday: String? = null,
+        @Expose @SerializedName("place_of_birth") val placeOfBirth: String,
+        @Expose val biography: String,
+        @Expose @SerializedName("also_known_as") val alsoKnownAs: List<String>,
+        @Expose @SerializedName("profile_path") val profilePath: String?
+)

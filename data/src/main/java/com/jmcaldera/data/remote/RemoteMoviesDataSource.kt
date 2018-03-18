@@ -5,6 +5,7 @@ import com.jmcaldera.data.extension.orElse
 import com.jmcaldera.data.extension.transformResult
 import com.jmcaldera.data.mapper.convertCreditsToDomain
 import com.jmcaldera.data.mapper.convertMovieDetailsToDomain
+import com.jmcaldera.data.mapper.convertPersonToDomain
 import com.jmcaldera.data.mapper.convertToDomain
 import com.jmcaldera.domain.functional.IOResult
 import com.jmcaldera.domain.model.*
@@ -47,6 +48,12 @@ class RemoteMoviesDataSource(private val service: TmdbService) : MoviesDataSourc
     override suspend fun requestMovieCredits(movieId: Int): IOResult<Credits, MovieError> {
         return service.getMovieCredits(movieId).transformResult {
             convertCreditsToDomain(this)
+        }.orElse { NotFoundError() }
+    }
+
+    override suspend fun requestPersonDetails(personId: Int): IOResult<Person, MovieError> {
+        return service.getPersonDetails(personId).transformResult {
+            convertPersonToDomain(this)
         }.orElse { NotFoundError() }
     }
 }

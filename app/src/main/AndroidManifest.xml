@@ -20,8 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".BaseActivity" />
-        <activity android:name=".details.MovieDetailsActivity"
-            android:theme="@style/AppTheme.Translucent"></activity>
+        <activity
+            android:name=".details.MovieDetailsActivity"
+            android:theme="@style/AppTheme.Translucent" />
+        <activity android:name=".people.PeopleActivity"></activity>
     </application>
 
 </manifest>
