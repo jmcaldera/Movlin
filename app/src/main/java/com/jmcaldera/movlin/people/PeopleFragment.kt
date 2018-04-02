@@ -3,6 +3,7 @@ package com.jmcaldera.movlin.people
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import androidx.view.isGone
 import androidx.view.isVisible
@@ -55,6 +56,10 @@ class PeopleFragment : BaseFragment(), PeopleContract.View {
 //            if (deathday != null) // TODO
             birthPlaceText.text = placeOfBirth
             biographyText.text = biography
+            (activity as? AppCompatActivity?)?.let {
+                it.supportActionBar?.title = name
+                it.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            }
         }
     }
 

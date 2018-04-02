@@ -3,6 +3,7 @@ package com.jmcaldera.movlin.details
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.graphics.drawable.DrawerArrowDrawable
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import androidx.view.isGone
@@ -24,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.layout_details_credits.*
 import kotlinx.android.synthetic.main.layout_details_images.*
 import kotlinx.android.synthetic.main.layout_details_summary.*
+import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 import org.jetbrains.anko.toast
@@ -55,6 +57,12 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
 
         listCast.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         listCast.adapter = CastCarouselAdapter { presenter.onCastMemberClicked(it) }
+
+        toolbar.navigationIcon = DrawerArrowDrawable(toolbar.context).apply {
+            progress = 1f
+        }
+
+        toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
 
         presenter.view = this
     }

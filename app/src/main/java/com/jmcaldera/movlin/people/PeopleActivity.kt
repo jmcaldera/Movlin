@@ -3,9 +3,11 @@ package com.jmcaldera.movlin.people
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import com.jmcaldera.movlin.BaseActivity
 import com.jmcaldera.movlin.BaseFragment
 import com.jmcaldera.movlin.R
+import com.jmcaldera.movlin.extension.consume
 
 class PeopleActivity : BaseActivity() {
 
@@ -27,5 +29,10 @@ class PeopleActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_people)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean = when (item?.itemId) {
+        android.R.id.home -> consume { onBackPressed() }
+        else -> super.onOptionsItemSelected(item)
     }
 }
