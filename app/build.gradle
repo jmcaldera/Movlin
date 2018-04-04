@@ -63,6 +63,7 @@ dependencies {
     // Unit and Instrumentation tests
     testImplementation unitTestDependencies.junit
     testImplementation unitTestDependencies.mockito
+    testImplementation unitTestDependencies.mockitoInline
     androidTestImplementation instrumentationTestDependencies.testRunner
     androidTestImplementation instrumentationTestDependencies.espressoCore
 
