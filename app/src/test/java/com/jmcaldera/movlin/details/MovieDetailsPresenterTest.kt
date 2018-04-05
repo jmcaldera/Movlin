@@ -1,9 +1,8 @@
 package com.jmcaldera.movlin.details
 
+import com.jmcaldera.domain.functional.asError
 import com.jmcaldera.domain.functional.result
-import com.jmcaldera.domain.model.Credits
-import com.jmcaldera.domain.model.Images
-import com.jmcaldera.domain.model.MovieDetails
+import com.jmcaldera.domain.model.*
 import com.jmcaldera.domain.usecase.GetMovieCreditsUseCase
 import com.jmcaldera.domain.usecase.GetMovieDetailsUseCase
 import com.jmcaldera.movlin.model.CastMemberViewModel
@@ -77,6 +76,38 @@ class MovieDetailsPresenterTest {
         verify(getMovieCreditsUseCase).execute(GetMovieCreditsUseCase.Params(ID))
         verify(view).showCast(convertCreditsFromDomain(credits).cast)
 
+    }
+
+    @Test
+    fun loadDetailsAndCredits_showUnauthorizedErrorInView() = runBlocking {
+        `when`(getMovieDetailsUseCase.execute(GetMovieDetailsUseCase.Params(ID)))
+                .thenReturn(UnauthorizedError().asError())
+
+        `when`(getMovieCreditsUseCase.execute(GetMovieCreditsUseCase.Params(ID)))
+                .thenReturn(UnauthorizedError().asError())
+
+        presenter.loadMovieDetails(ID)
+
+        verify(getMovieDetailsUseCase).execute(GetMovieDetailsUseCase.Params(ID))
+        verify(getMovieCreditsUseCase).execute(GetMovieCreditsUseCase.Params(ID))
+
+        verify(view, times(2)).showUnauthorizedError()
+    }
+
+    @Test
+    fun loadDetailsAndCredits_showNotFoundErrorInView() = runBlocking {
+        `when`(getMovieDetailsUseCase.execute(GetMovieDetailsUseCase.Params(ID)))
+                .thenReturn(NotFoundError().asError())
+
+        `when`(getMovieCreditsUseCase.execute(GetMovieCreditsUseCase.Params(ID)))
+                .thenReturn(NotFoundError().asError())
+
+        presenter.loadMovieDetails(ID)
+
+        verify(getMovieDetailsUseCase).execute(GetMovieDetailsUseCase.Params(ID))
+        verify(getMovieCreditsUseCase).execute(GetMovieCreditsUseCase.Params(ID))
+
+        verify(view, times(2)).showNotFoundError()
     }
 
     @Test
