@@ -7,8 +7,8 @@ import com.jmcaldera.domain.model.*
  * Created by jmcaldera on 08-03-18.
  */
 fun convertToDomain(nowPlaying: TmdbNowPlayingUpcoming,
-                    moviesMapper: (List<TmdbMovie>) -> List<Movie> = ::defaultMoviesMapper): NowPlayingUpcoming = with(nowPlaying) {
-    NowPlayingUpcoming(moviesMapper(movies), page, totalResults, totalPages)
+                    moviesMapper: (List<TmdbMovie>) -> List<Movie> = ::defaultMoviesMapper): List<Movie> = with(nowPlaying) {
+    moviesMapper(movies)
 }
 
 fun convertToDomain(topRated: TmdbTopRatedPopular,

@@ -32,9 +32,9 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
 
         nowPlayingResult.asyncAwait { result ->
             result.fold(
-                    onSuccess = { nowPlayingList ->
+                    onSuccess = { movies ->
                         if (view.isActive()) {
-                            view.showNowPlayingMovies(nowPlayingList.movies.map {
+                            view.showNowPlayingMovies(movies.map {
                                 MovieViewModel(it.id, it.title, it.posterPath)
                             })
                         }
@@ -71,9 +71,9 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
 
         upcomingResult.asyncAwait { result ->
             result.fold(
-                    onSuccess = { upcomingList ->
+                    onSuccess = { movies ->
                         if (view.isActive()) {
-                            view.showUpcomingMovies(upcomingList.movies.map {
+                            view.showUpcomingMovies(movies.map {
                                 MovieViewModel(it.id, it.title, it.posterPath)
                             })
                         }

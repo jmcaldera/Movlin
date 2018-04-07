@@ -2,6 +2,7 @@ package com.jmcaldera.domain.usecase
 
 import com.jmcaldera.domain.functional.Success
 import com.jmcaldera.domain.functional.result
+import com.jmcaldera.domain.model.Movie
 import com.jmcaldera.domain.model.NowPlayingUpcoming
 import com.jmcaldera.domain.repository.MoviesRepository
 import kotlinx.coroutines.experimental.runBlocking
@@ -22,17 +23,18 @@ class GetNowPlayingMoviesUseCaseTest {
     @Mock
     private lateinit var moviesRepository: MoviesRepository
 
-    private lateinit var nowPlayingMovies: NowPlayingUpcoming
+    private lateinit var movieList: List<Movie>
 
     private lateinit var getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase
 
     @Before
     fun setUp() = runBlocking {
 
-        nowPlayingMovies = NowPlayingUpcoming(emptyList(), 1, 100,
-                10)
+        movieList = listOf(Movie(1, 1, false, 1.0, "title",
+                1.0, "/poster", "en", "title", emptyList(),
+                "/path", false, "over", "date"))
 
-        `when`(moviesRepository.getNowPlayingMovies()).thenReturn(nowPlayingMovies.result())
+        `when`(moviesRepository.getNowPlayingMovies()).thenReturn(movieList.result())
 
         getNowPlayingMoviesUseCase = GetNowPlayingMoviesUseCase(moviesRepository)
     }
@@ -41,6 +43,6 @@ class GetNowPlayingMoviesUseCaseTest {
     fun getNowPlayingMovies_returnsSuccessResult() {
         val result = runBlocking { getNowPlayingMoviesUseCase.execute().deferred.await() }
         val movies = (result as? Success)?.value
-        assertEquals(movies, nowPlayingMovies)
+        assertEquals(movies, movieList)
     }
 }

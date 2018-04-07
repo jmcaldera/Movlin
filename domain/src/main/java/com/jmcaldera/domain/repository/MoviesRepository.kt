@@ -8,13 +8,13 @@ import com.jmcaldera.domain.model.*
  */
 interface MoviesRepository {
 
-    suspend fun getNowPlayingMovies(): IOResult<NowPlayingUpcoming, MovieError>
+    suspend fun getNowPlayingMovies(): IOResult<List<Movie>, MovieError>
 
     suspend fun getTopRatedMovies(): IOResult<TopRatedPopular, MovieError>
 
     suspend fun getPopularMovies(): IOResult<TopRatedPopular, MovieError>
 
-    suspend fun getUpcomingMovies(): IOResult<NowPlayingUpcoming, MovieError>
+    suspend fun getUpcomingMovies(): IOResult<List<Movie>, MovieError>
 
     suspend fun getMovieDetails(movieId: Int) : IOResult<MovieDetails, MovieError>
 

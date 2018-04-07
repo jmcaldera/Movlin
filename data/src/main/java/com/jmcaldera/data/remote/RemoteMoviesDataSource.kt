@@ -15,7 +15,7 @@ import com.jmcaldera.domain.model.*
  */
 class RemoteMoviesDataSource(private val service: TmdbService) : MoviesDataSource {
 
-    override suspend fun requestNowPlayingMovies(): IOResult<NowPlayingUpcoming, MovieError> {
+    override suspend fun requestNowPlayingMovies(): IOResult<List<Movie>, MovieError> {
         return service.getNowPlayingMovies().transformResult {
             convertToDomain(this)
         }.orElse { NotFoundError() }
@@ -33,7 +33,7 @@ class RemoteMoviesDataSource(private val service: TmdbService) : MoviesDataSourc
         }.orElse { NotFoundError() }
     }
 
-    override suspend fun requestUpcomingMovies(): IOResult<NowPlayingUpcoming, MovieError> {
+    override suspend fun requestUpcomingMovies(): IOResult<List<Movie>, MovieError> {
         return service.getUpcomingMovies().transformResult {
             convertToDomain(this)
         }.orElse { NotFoundError() }

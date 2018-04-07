@@ -10,7 +10,7 @@ import com.jmcaldera.domain.repository.MoviesRepository
  */
 class MoviesRepositoryImpl(private val remoteDataSource: MoviesDataSource) : MoviesRepository {
 
-    override suspend fun getNowPlayingMovies(): IOResult<NowPlayingUpcoming, MovieError> {
+    override suspend fun getNowPlayingMovies(): IOResult<List<Movie>, MovieError> {
         return remoteDataSource.requestNowPlayingMovies()
     }
 
@@ -22,7 +22,7 @@ class MoviesRepositoryImpl(private val remoteDataSource: MoviesDataSource) : Mov
         return remoteDataSource.requestPopularMovies()
     }
 
-    override suspend fun getUpcomingMovies(): IOResult<NowPlayingUpcoming, MovieError> {
+    override suspend fun getUpcomingMovies(): IOResult<List<Movie>, MovieError> {
         return remoteDataSource.requestUpcomingMovies()
     }
 
