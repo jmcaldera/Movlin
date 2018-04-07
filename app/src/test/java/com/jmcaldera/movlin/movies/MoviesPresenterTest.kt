@@ -49,7 +49,7 @@ class MoviesPresenterTest {
     fun setUp() = runBlocking {
 
         nowPlayingUpcoming = NowPlayingUpcoming(emptyList(), 1, 1,
-                Dates("max", "min"), 1)
+                1)
 
         topRatedPopular = TopRatedPopular(1, 1, 1, emptyList())
 

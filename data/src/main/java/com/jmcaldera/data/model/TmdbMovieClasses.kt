@@ -10,7 +10,6 @@ data class TmdbNowPlayingUpcoming(
         @Expose @SerializedName("results") val movies: List<TmdbMovie>,    // results
         @Expose val page: Int,
         @Expose @SerializedName("total_results") val totalResults: Int,
-        @Expose val dates: TmdbDates,
         @Expose @SerializedName("total_pages") val totalPages: Int
 )
 
@@ -20,21 +19,6 @@ data class TmdbTopRatedPopular(
         @Expose @SerializedName("total_pages") val totalPages: Int,
         @Expose @SerializedName("results") val movies: List<TmdbMovie>
 )
-
-//data class TmdbUpcoming(
-//        @Expose @SerializedName("results") val movies: List<TmdbMovie>,    // results
-//        @Expose val page: Int,
-//        @Expose @SerializedName("total_results") val totalResults: Int,
-//        @Expose val dates: TmdbDates,
-//        @Expose @SerializedName("total_pages") val totalPages: Int
-//)
-//
-//data class TmdbPopular(
-//        @Expose val page: Int,
-//        @Expose @SerializedName("total_results") val totalResults: Int,
-//        @Expose @SerializedName("total_pages") val totalPages: Int,
-//        @Expose @SerializedName("results") val movies: List<TmdbMovie>
-//)
 
 data class TmdbMovie(
         @Expose @SerializedName("vote_count") val voteCount: Int,
@@ -53,11 +37,9 @@ data class TmdbMovie(
         @Expose @SerializedName("release_date") val releaseDate: String
 )
 
-data class TmdbDates(val maximum: String, val minimum: String)
-
 data class TmdbMovieDetails(
         @Expose @SerializedName("vote_count") val voteCount: Int,
-        @Expose val budge: Long,
+        @Expose val budget: Long,
         @Expose val id: Int,
         @Expose val video: Boolean,
         @Expose @SerializedName("vote_average") val voteAverage: Double,

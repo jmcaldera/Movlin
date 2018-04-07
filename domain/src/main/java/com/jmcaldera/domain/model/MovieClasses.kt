@@ -7,7 +7,6 @@ data class NowPlayingUpcoming(
         val movies: List<Movie>,    // results
         val page: Int,
         val totalResults: Int,
-        val dates: Dates,
         val totalPages: Int
 )
 
@@ -17,21 +16,6 @@ data class TopRatedPopular(
         val totalPages: Int,
         val movies: List<Movie>
 )
-
-//data class Upcoming(
-//        val movies: List<Movie>,    // results
-//        val page: Int,
-//        val totalResults: Int,
-//        val dates: Dates,
-//        val totalPages: Int
-//)
-//
-//data class Popular(
-//        val page: Int,
-//        val totalResults: Int,
-//        val totalPages: Int,
-//        val movies: List<Movie>
-//)
 
 data class Movie(
         val voteCount: Int,

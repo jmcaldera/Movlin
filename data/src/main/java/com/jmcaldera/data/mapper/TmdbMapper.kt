@@ -7,9 +7,8 @@ import com.jmcaldera.domain.model.*
  * Created by jmcaldera on 08-03-18.
  */
 fun convertToDomain(nowPlaying: TmdbNowPlayingUpcoming,
-                    moviesMapper: (List<TmdbMovie>) -> List<Movie> = ::defaultMoviesMapper,
-                    datesMapper: (TmdbDates) -> Dates = ::defaultDatesMapper): NowPlayingUpcoming = with(nowPlaying) {
-    NowPlayingUpcoming(moviesMapper(movies), page, totalResults, datesMapper(dates), totalPages)
+                    moviesMapper: (List<TmdbMovie>) -> List<Movie> = ::defaultMoviesMapper): NowPlayingUpcoming = with(nowPlaying) {
+    NowPlayingUpcoming(moviesMapper(movies), page, totalResults, totalPages)
 }
 
 fun convertToDomain(topRated: TmdbTopRatedPopular,
@@ -23,11 +22,9 @@ fun defaultMoviesMapper(movies: List<TmdbMovie>): List<Movie> {
     }
 }
 
-fun defaultDatesMapper(dates: TmdbDates): Dates = dates.let { Dates(it.maximum, it.minimum) }
-
 fun convertMovieDetailsToDomain(movie: TmdbMovieDetails): MovieDetails {
     return movie.let {
-        MovieDetails(it.voteCount, it.budge, it.id, it.video, it.voteAverage, it.title, it.popularity, it.posterPath,
+        MovieDetails(it.voteCount, it.budget, it.id, it.video, it.voteAverage, it.title, it.popularity, it.posterPath,
                 it.originalTitle, it.originalTitle, genresMapper(it.genres), it.backdropPath, it.adult,
                 it.overview, it.releaseDate, it.runtime, it.revenue, imagesMapper(it.images))
     }

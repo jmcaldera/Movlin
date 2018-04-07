@@ -2,7 +2,6 @@ package com.jmcaldera.domain.usecase
 
 import com.jmcaldera.domain.functional.Success
 import com.jmcaldera.domain.functional.result
-import com.jmcaldera.domain.model.Dates
 import com.jmcaldera.domain.model.NowPlayingUpcoming
 import com.jmcaldera.domain.repository.MoviesRepository
 import kotlinx.coroutines.experimental.runBlocking
@@ -31,7 +30,7 @@ class GetNowPlayingMoviesUseCaseTest {
     fun setUp() = runBlocking {
 
         nowPlayingMovies = NowPlayingUpcoming(emptyList(), 1, 100,
-                Dates("2018-03-14", "2018-01-25"), 10)
+                10)
 
         `when`(moviesRepository.getNowPlayingMovies()).thenReturn(nowPlayingMovies.result())
 
