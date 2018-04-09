@@ -26,7 +26,7 @@ class MoviesRepositoryImpl(private val remoteDataSource: MoviesDataSource) : Mov
         return remoteDataSource.requestUpcomingMovies()
     }
 
-    override suspend fun getMovieDetails(movieId: Int): IOResult<MovieDetails, MovieError> {
+    override suspend fun getMovieDetails(movieId: Int): IOResult<Movie, MovieError> {
         return remoteDataSource.requestMovieDetails(movieId)
     }
 

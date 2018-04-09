@@ -35,7 +35,8 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
                     onSuccess = { movies ->
                         if (view.isActive()) {
                             view.showNowPlayingMovies(movies.map {
-                                MovieViewModel(it.id, it.title, it.posterPath)
+                                MovieViewModel(it.id, it.title, it.posterPath, it.releaseDate,
+                                        it.voteAverage, it.voteCount)
                             })
                         }
                     },
@@ -48,7 +49,8 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
                     onSuccess = { movies ->
                         if (view.isActive()) {
                             view.showPopularMovies(movies.map {
-                                MovieViewModel(it.id, it.title, it.posterPath)
+                                MovieViewModel(it.id, it.title, it.posterPath, it.releaseDate,
+                                        it.voteAverage, it.voteCount)
                             })
                         }
                     },
@@ -61,7 +63,8 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
                     onSuccess = { movies ->
                         if (view.isActive()) {
                             view.showTopRatedMovies(movies.map {
-                                MovieViewModel(it.id, it.title, it.posterPath)
+                                MovieViewModel(it.id, it.title, it.posterPath, it.releaseDate,
+                                        it.voteAverage, it.voteCount)
                             })
                         }
                     },
@@ -74,7 +77,8 @@ class MoviesPresenter(private val getNowPlayingMoviesUseCase: GetNowPlayingMovie
                     onSuccess = { movies ->
                         if (view.isActive()) {
                             view.showUpcomingMovies(movies.map {
-                                MovieViewModel(it.id, it.title, it.posterPath)
+                                MovieViewModel(it.id, it.title, it.posterPath, it.releaseDate,
+                                        it.voteAverage, it.voteCount)
                             })
                         }
                     },

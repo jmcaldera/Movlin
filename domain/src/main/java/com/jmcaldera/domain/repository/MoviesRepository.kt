@@ -16,7 +16,7 @@ interface MoviesRepository {
 
     suspend fun getUpcomingMovies(): IOResult<List<Movie>, MovieError>
 
-    suspend fun getMovieDetails(movieId: Int) : IOResult<MovieDetails, MovieError>
+    suspend fun getMovieDetails(movieId: Int) : IOResult<Movie, MovieError>
 
     suspend fun getMovieCredits(movieId: Int) : IOResult<Credits, MovieError>
 

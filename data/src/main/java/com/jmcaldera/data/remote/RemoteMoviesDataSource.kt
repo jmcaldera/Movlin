@@ -39,7 +39,7 @@ class RemoteMoviesDataSource(private val service: TmdbService) : MoviesDataSourc
         }.orElse { NotFoundError() }
     }
 
-    override suspend fun requestMovieDetails(movieId: Int): IOResult<MovieDetails, MovieError> {
+    override suspend fun requestMovieDetails(movieId: Int): IOResult<Movie, MovieError> {
         return service.getMovieDetails(movieId).transformResult {
             convertMovieDetailsToDomain(this)
         }.orElse { NotFoundError() }

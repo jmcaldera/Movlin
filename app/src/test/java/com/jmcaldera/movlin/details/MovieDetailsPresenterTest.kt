@@ -12,7 +12,6 @@ import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
@@ -38,6 +37,8 @@ class MovieDetailsPresenterTest {
 
     private lateinit var movieDetails: MovieDetails
 
+    private lateinit var movie: Movie
+
     private lateinit var credits: Credits
 
     private lateinit var presenter: MovieDetailsPresenter
@@ -45,15 +46,17 @@ class MovieDetailsPresenterTest {
     @Before
     fun setUp() = runBlocking {
 
-        movieDetails = MovieDetails(1, 1, 1, false, 5.0, "title",
-                5.0, "/poster", "en", "title", emptyList(),
-                "/backdrop", false, "overview", "release",
-                100, 100, Images(emptyList(), emptyList()))
+        movieDetails = MovieDetails("overview", 1, emptyList(), 100, 100, "/backdrop",
+                Images(emptyList(), emptyList()))
+
+        movie = Movie(1, 1, false, 1.0, "title",
+                1.0, "/poster", "en", "title", false,
+                "over", "date", "/path", movieDetails)
 
         credits = Credits(1, emptyList(), emptyList())
 
         `when`(getMovieDetailsUseCase.execute(GetMovieDetailsUseCase.Params(ID)))
-                .thenReturn(movieDetails.result())
+                .thenReturn(movie.result())
 
         `when`(getMovieCreditsUseCase.execute(GetMovieCreditsUseCase.Params(ID)))
                 .thenReturn(credits.result())
@@ -71,7 +74,7 @@ class MovieDetailsPresenterTest {
         presenter.loadMovieDetails(ID)
 
         verify(getMovieDetailsUseCase).execute(GetMovieDetailsUseCase.Params(ID))
-        verify(view).showDetails(convertMovieDetailsFromDomain(movieDetails))
+        verify(view).showDetails(convertMovieDetailsFromDomain(movie))
 
         verify(getMovieCreditsUseCase).execute(GetMovieCreditsUseCase.Params(ID))
         verify(view).showCast(convertCreditsFromDomain(credits).cast)

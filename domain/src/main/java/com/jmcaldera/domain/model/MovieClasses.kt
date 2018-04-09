@@ -21,23 +21,12 @@ data class Movie(
 )
 
 data class MovieDetails(
-        val voteCount: Int,
-        val budget: Long,
-        val id: Int,
-        val video: Boolean,
-        val voteAverage: Double,
-        val title: String,
-        val popularity: Double,
-        val posterPath: String,
-        val originalLanguage: String,
-        val originalTitle: String,
-        val genres: List<Genre>,
-        val backdropPath: String? = null,
-        val adult: Boolean,
         val overview: String,
-        val releaseDate: String,
+        val budget: Long,
+        val genres: List<Genre>,
         val runtime: Int,
         val revenue: Long,
+        val backdropPath: String? = null,
         val images: Images
 
 )
@@ -59,8 +48,8 @@ data class Person(
         val name: String,
         val birthday: String,
         val deathday: String? = null,
-        val placeOfBirth: String,
-        val biography: String,
+        val placeOfBirth: String? = null,
+        val biography: String? = null,
         val alsoKnownAs: List<String>,
         val profilePath: String?
 )

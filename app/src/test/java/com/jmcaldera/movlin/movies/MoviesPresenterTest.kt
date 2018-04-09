@@ -46,7 +46,8 @@ class MoviesPresenterTest {
     @Before
     fun setUp() = runBlocking {
 
-        movieViewModel = MovieViewModel(1, "title", "/poster")
+        movieViewModel = MovieViewModel(1, "title", "/poster", "date",
+                1.0, 1)
 
         movieList = listOf(Movie(1, 1, false, 1.0, "title",
                 1.0, "/poster", "en", "title", false,
@@ -74,10 +75,14 @@ class MoviesPresenterTest {
         verify(getPopularMoviesUseCase).execute()
         verify(getTopRatedMoviesUseCase).execute()
 
-        verify(view).showNowPlayingMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath) })
-        verify(view).showUpcomingMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath) })
-        verify(view).showPopularMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath) })
-        verify(view).showTopRatedMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath) })
+        verify(view).showNowPlayingMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath,
+                it.releaseDate, it.voteAverage, it.voteCount) })
+        verify(view).showUpcomingMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath,
+                it.releaseDate, it.voteAverage, it.voteCount) })
+        verify(view).showPopularMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath,
+                it.releaseDate, it.voteAverage, it.voteCount) })
+        verify(view).showTopRatedMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath,
+                it.releaseDate, it.voteAverage, it.voteCount) })
 
     }
 

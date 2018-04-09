@@ -6,9 +6,16 @@ import com.jmcaldera.movlin.model.*
 /**
  * Created by jmcaldera on 14-03-18.
  */
-fun convertMovieDetailsFromDomain(movie: MovieDetails) : MovieDetailsViewModel = with(movie) {
-    MovieDetailsViewModel(id, voteCount, budget, voteAverage, title, posterPath, convertGenreFromDomain(genres),
-            backdropPath, overview, releaseDate, runtime, revenue, convertImagesFromDomain(images))
+fun convertMovieDetailsFromDomain(movie: Movie) : MovieViewModel {
+
+    val details = with(movie.details!!) {
+        MovieDetailsViewModel(overview, budget, convertGenreFromDomain(genres),
+                runtime, revenue, backdropPath, convertImagesFromDomain(images))
+    }
+
+    return MovieViewModel(movie.id, movie.title, movie.posterPath, movie.releaseDate, movie.voteAverage,
+            movie.voteCount, details)
+
 }
 
 fun convertGenreFromDomain(genres: List<Genre>): List<GenreViewModel> =

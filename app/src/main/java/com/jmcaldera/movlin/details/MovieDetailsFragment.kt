@@ -19,7 +19,7 @@ import com.jmcaldera.movlin.di.ApplicationComponent
 import com.jmcaldera.movlin.di.subcomponent.details.DetailsModule
 import com.jmcaldera.movlin.extension.loadFromUrl
 import com.jmcaldera.movlin.model.CastMemberViewModel
-import com.jmcaldera.movlin.model.MovieDetailsViewModel
+import com.jmcaldera.movlin.model.MovieViewModel
 import com.jmcaldera.movlin.people.PeopleActivity
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.layout_details_credits.*
@@ -74,7 +74,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
         }
     }
 
-    override fun showDetails(movie: MovieDetailsViewModel) {
+    override fun showDetails(movie: MovieViewModel) {
 
         with(movie) {
             collapsing_toolbar.title = title
@@ -85,21 +85,21 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsContract.View {
             val year = outputFormat.format(date)
             movieDate.text = year
 
-            movieRuntime.text = String.format("%2dh %02dmin", runtime / 60, runtime % 60)
-            movieGenres.text = genres.map { it.name }.toString()
+            movieRuntime.text = String.format("%2dh %02dmin", details!!.runtime / 60, details.runtime % 60)
+            movieGenres.text = details.genres.map { it.name }.toString()
 
             moviePoster.loadFromUrl(TmdbEndpoints.POSTER_URL_W185 + posterPath)
-            textVoteAverage.text = "$voteAverage/10"
+            textVoteAverage.text = "${voteAverage}/10"
             textVoteCount.text = voteCount.toString()
-            movieShortSummary.text = overview
+            movieShortSummary.text = details.overview
 
-            if (backdropPath != null) {
-                image_header.loadFromUrl(BACKDROP_URL_W300 + backdropPath)
+            if (details.backdropPath != null) {
+                image_header.loadFromUrl(BACKDROP_URL_W300 + details.backdropPath)
             } else {
                 image_header.isGone = true
             }
 
-            (listImages.adapter as ImagesCarouselAdapter).imageList = images.backdrops
+            (listImages.adapter as ImagesCarouselAdapter).imageList = details.images.backdrops
         }
 
     }

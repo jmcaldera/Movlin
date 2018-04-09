@@ -16,7 +16,7 @@ interface MoviesDataSource {
 
     suspend fun requestUpcomingMovies(): IOResult<List<Movie>, MovieError>
 
-    suspend fun requestMovieDetails(movieId: Int): IOResult<MovieDetails, MovieError>
+    suspend fun requestMovieDetails(movieId: Int): IOResult<Movie, MovieError>
 
     suspend fun requestMovieCredits(movieId: Int): IOResult<Credits, MovieError>
 

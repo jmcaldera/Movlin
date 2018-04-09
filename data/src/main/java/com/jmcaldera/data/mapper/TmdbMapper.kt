@@ -22,11 +22,12 @@ fun defaultMoviesMapper(movies: List<TmdbMovie>): List<Movie> {
     }
 }
 
-fun convertMovieDetailsToDomain(movie: TmdbMovieDetails): MovieDetails {
+fun convertMovieDetailsToDomain(movie: TmdbMovieDetails): Movie {
     return movie.let {
-        MovieDetails(it.voteCount, it.budget, it.id, it.video, it.voteAverage, it.title, it.popularity, it.posterPath,
-                it.originalTitle, it.originalTitle, genresMapper(it.genres), it.backdropPath, it.adult,
-                it.overview, it.releaseDate, it.runtime, it.revenue, imagesMapper(it.images))
+        val details = MovieDetails(it.overview, it.budget, genresMapper(it.genres), it.runtime,
+                it.revenue, it.backdropPath, imagesMapper(it.images))
+        Movie(it.id, it.voteCount, it.video, it.voteAverage, it.title, it.popularity, it.posterPath,
+                it.originalTitle, it.originalTitle, it.adult, it.overview, it.releaseDate, it.backdropPath, details)
     }
 }
 

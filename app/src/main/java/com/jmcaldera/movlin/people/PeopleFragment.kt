@@ -54,8 +54,8 @@ class PeopleFragment : BaseFragment(), PeopleContract.View {
             profileImage.loadFromUrl(PROFILE_URL_W185 + profilePath)
             birthdayText.text = birthday
 //            if (deathday != null) // TODO
-            birthPlaceText.text = placeOfBirth
-            biographyText.text = biography
+            birthPlaceText.text = placeOfBirth ?: ""
+            biographyText.text = biography ?: ""
             (activity as? AppCompatActivity?)?.let {
                 it.supportActionBar?.title = name
                 it.supportActionBar?.setDisplayHomeAsUpEnabled(true)
