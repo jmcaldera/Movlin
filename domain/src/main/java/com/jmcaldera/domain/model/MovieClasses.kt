@@ -4,8 +4,8 @@ package com.jmcaldera.domain.model
  * Created by jmcaldera on 07-03-18.
  */
 data class Movie(
-        val voteCount: Int,
         val id: Int,
+        val voteCount: Int,
         val video: Boolean,
         val voteAverage: Double,
         val title: String,
@@ -13,11 +13,11 @@ data class Movie(
         val posterPath: String,
         val originalLanguage: String,
         val originalTitle: String,
-        val genreIds: List<Int>,
-        val backdropPath: String? = null,
         val adult: Boolean,
         val overview: String,
-        val releaseDate: String
+        val releaseDate: String,
+        val backdropPath: String? = null,
+        val details: MovieDetails? = null
 )
 
 data class MovieDetails(

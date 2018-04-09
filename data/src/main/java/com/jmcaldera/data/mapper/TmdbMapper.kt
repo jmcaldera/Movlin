@@ -17,8 +17,8 @@ fun convertToDomain(topRated: TmdbTopRatedPopular,
 
 fun defaultMoviesMapper(movies: List<TmdbMovie>): List<Movie> {
     return movies.map {
-        Movie(it.voteCount, it.id, it.video, it.voteAverage, it.title, it.popularity, it.posterPath,
-                it.originalTitle, it.originalTitle, it.genreIds, it.backdropPath, it.adult, it.overview, it.releaseDate)
+        Movie(it.id, it.voteCount, it.video, it.voteAverage, it.title, it.popularity, it.posterPath,
+                it.originalTitle, it.originalTitle, it.adult, it.overview, it.releaseDate, it.backdropPath)
     }
 }
 

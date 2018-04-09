@@ -30,8 +30,8 @@ class GetPopularMoviesUseCaseTest {
     fun setUp() = runBlocking {
 
         movieList = listOf(Movie(1, 1, false, 1.0, "title",
-                1.0, "/poster", "en", "title", emptyList(),
-                "/path", false, "over", "date"))
+                1.0, "/poster", "en", "title", false,
+                "over", "date", "/path", null))
 
         `when`(moviesRepository.getPopularMovies()).thenReturn(movieList.result())
 
