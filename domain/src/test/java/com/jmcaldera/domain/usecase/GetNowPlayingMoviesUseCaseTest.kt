@@ -3,7 +3,6 @@ package com.jmcaldera.domain.usecase
 import com.jmcaldera.domain.functional.Success
 import com.jmcaldera.domain.functional.result
 import com.jmcaldera.domain.model.Movie
-import com.jmcaldera.domain.model.NowPlayingUpcoming
 import com.jmcaldera.domain.repository.MoviesRepository
 import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Assert.assertEquals

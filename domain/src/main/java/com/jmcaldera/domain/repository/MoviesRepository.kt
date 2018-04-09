@@ -10,9 +10,9 @@ interface MoviesRepository {
 
     suspend fun getNowPlayingMovies(): IOResult<List<Movie>, MovieError>
 
-    suspend fun getTopRatedMovies(): IOResult<TopRatedPopular, MovieError>
+    suspend fun getTopRatedMovies(): IOResult<List<Movie>, MovieError>
 
-    suspend fun getPopularMovies(): IOResult<TopRatedPopular, MovieError>
+    suspend fun getPopularMovies(): IOResult<List<Movie>, MovieError>
 
     suspend fun getUpcomingMovies(): IOResult<List<Movie>, MovieError>
 

@@ -14,11 +14,11 @@ class MoviesRepositoryImpl(private val remoteDataSource: MoviesDataSource) : Mov
         return remoteDataSource.requestNowPlayingMovies()
     }
 
-    override suspend fun getTopRatedMovies(): IOResult<TopRatedPopular, MovieError> {
+    override suspend fun getTopRatedMovies(): IOResult<List<Movie>, MovieError> {
         return remoteDataSource.requestTopRatedMovies()
     }
 
-    override suspend fun getPopularMovies(): IOResult<TopRatedPopular, MovieError> {
+    override suspend fun getPopularMovies(): IOResult<List<Movie>, MovieError> {
         return remoteDataSource.requestPopularMovies()
     }
 

@@ -21,13 +21,13 @@ class RemoteMoviesDataSource(private val service: TmdbService) : MoviesDataSourc
         }.orElse { NotFoundError() }
     }
 
-    override suspend fun requestTopRatedMovies(): IOResult<TopRatedPopular, MovieError> {
+    override suspend fun requestTopRatedMovies(): IOResult<List<Movie>, MovieError> {
         return service.getTopRatedMovies().transformResult {
             convertToDomain(this)
         }.orElse { NotFoundError() }
     }
 
-    override suspend fun requestPopularMovies(): IOResult<TopRatedPopular, MovieError> {
+    override suspend fun requestPopularMovies(): IOResult<List<Movie>, MovieError> {
         return service.getPopularMovies().transformResult {
             convertToDomain(this)
         }.orElse { NotFoundError() }

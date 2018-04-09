@@ -10,9 +10,9 @@ interface MoviesDataSource {
 
     suspend fun requestNowPlayingMovies(): IOResult<List<Movie>, MovieError>
 
-    suspend fun requestTopRatedMovies(): IOResult<TopRatedPopular, MovieError>
+    suspend fun requestTopRatedMovies(): IOResult<List<Movie>, MovieError>
 
-    suspend fun requestPopularMovies(): IOResult<TopRatedPopular, MovieError>
+    suspend fun requestPopularMovies(): IOResult<List<Movie>, MovieError>
 
     suspend fun requestUpcomingMovies(): IOResult<List<Movie>, MovieError>
 

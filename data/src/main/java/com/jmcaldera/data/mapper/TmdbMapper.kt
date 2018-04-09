@@ -12,8 +12,8 @@ fun convertToDomain(nowPlaying: TmdbNowPlayingUpcoming,
 }
 
 fun convertToDomain(topRated: TmdbTopRatedPopular,
-                    moviesMapper: (List<TmdbMovie>) -> List<Movie> = ::defaultMoviesMapper): TopRatedPopular =
-        with(topRated) { TopRatedPopular(page, totalResults, totalPages, moviesMapper(movies)) }
+                    moviesMapper: (List<TmdbMovie>) -> List<Movie> = ::defaultMoviesMapper): List<Movie> =
+        with(topRated) { moviesMapper(movies) }
 
 fun defaultMoviesMapper(movies: List<TmdbMovie>): List<Movie> {
     return movies.map {

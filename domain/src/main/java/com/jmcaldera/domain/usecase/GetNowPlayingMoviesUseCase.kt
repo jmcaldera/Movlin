@@ -3,7 +3,6 @@ package com.jmcaldera.domain.usecase
 import com.jmcaldera.domain.functional.IOResult
 import com.jmcaldera.domain.model.Movie
 import com.jmcaldera.domain.model.MovieError
-import com.jmcaldera.domain.model.NowPlayingUpcoming
 import com.jmcaldera.domain.repository.MoviesRepository
 
 /**

@@ -2,7 +2,7 @@ package com.jmcaldera.domain.usecase
 
 import com.jmcaldera.domain.functional.Success
 import com.jmcaldera.domain.functional.result
-import com.jmcaldera.domain.model.TopRatedPopular
+import com.jmcaldera.domain.model.Movie
 import com.jmcaldera.domain.repository.MoviesRepository
 import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Assert.assertEquals
@@ -22,16 +22,18 @@ class GetPopularMoviesUseCaseTest {
     @Mock
     private lateinit var moviesRepository: MoviesRepository
 
-    private lateinit var popularMovies: TopRatedPopular
+    private lateinit var movieList: List<Movie>
 
     private lateinit var getPopularMoviesUseCase: GetPopularMoviesUseCase
 
     @Before
     fun setUp() = runBlocking {
 
-        popularMovies = TopRatedPopular(1, 100, 20, emptyList())
+        movieList = listOf(Movie(1, 1, false, 1.0, "title",
+                1.0, "/poster", "en", "title", emptyList(),
+                "/path", false, "over", "date"))
 
-        `when`(moviesRepository.getPopularMovies()).thenReturn(popularMovies.result())
+        `when`(moviesRepository.getPopularMovies()).thenReturn(movieList.result())
 
         getPopularMoviesUseCase = GetPopularMoviesUseCase(moviesRepository)
     }
@@ -40,6 +42,6 @@ class GetPopularMoviesUseCaseTest {
     fun getPopularMovies_returnsSuccessResult() {
         val result = runBlocking { getPopularMoviesUseCase.execute().deferred.await() }
         val movies = (result as? Success)?.value
-        assertEquals(movies, popularMovies)
+        assertEquals(movies, movieList)
     }
 }

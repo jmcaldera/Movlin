@@ -37,9 +37,7 @@ class MoviesPresenterTest {
     @Mock
     private lateinit var view : MoviesContract.View
 
-    private lateinit var nowPlayingUpcoming: NowPlayingUpcoming
-
-    private lateinit var topRatedPopular: TopRatedPopular
+    private lateinit var movieList: List<Movie>
 
     private lateinit var movieViewModel: MovieViewModel
 
@@ -48,17 +46,16 @@ class MoviesPresenterTest {
     @Before
     fun setUp() = runBlocking {
 
-        nowPlayingUpcoming = NowPlayingUpcoming(emptyList(), 1, 1,
-                1)
-
-        topRatedPopular = TopRatedPopular(1, 1, 1, emptyList())
-
         movieViewModel = MovieViewModel(1, "title", "/poster")
 
-        `when`(getNowPlayingMoviesUseCase.execute()).thenReturn(nowPlayingUpcoming.result())
-        `when`(getUpcomingMoviesUseCase.execute()).thenReturn(nowPlayingUpcoming.result())
-        `when`(getPopularMoviesUseCase.execute()).thenReturn(topRatedPopular.result())
-        `when`(getTopRatedMoviesUseCase.execute()).thenReturn(topRatedPopular.result())
+        movieList = listOf(Movie(1, 1, false, 1.0, "title",
+                1.0, "/poster", "en", "title", emptyList(),
+                "/path", false, "over", "date"))
+
+        `when`(getNowPlayingMoviesUseCase.execute()).thenReturn(movieList.result())
+        `when`(getUpcomingMoviesUseCase.execute()).thenReturn(movieList.result())
+        `when`(getPopularMoviesUseCase.execute()).thenReturn(movieList.result())
+        `when`(getTopRatedMoviesUseCase.execute()).thenReturn(movieList.result())
 
         `when`(view.isActive()).thenReturn(true)
 
@@ -77,10 +74,10 @@ class MoviesPresenterTest {
         verify(getPopularMoviesUseCase).execute()
         verify(getTopRatedMoviesUseCase).execute()
 
-        verify(view).showNowPlayingMovies(nowPlayingUpcoming.movies.map { MovieViewModel(it.id, it.title, it.posterPath) })
-        verify(view).showUpcomingMovies(nowPlayingUpcoming.movies.map { MovieViewModel(it.id, it.title, it.posterPath) })
-        verify(view).showPopularMovies(nowPlayingUpcoming.movies.map { MovieViewModel(it.id, it.title, it.posterPath) })
-        verify(view).showTopRatedMovies(nowPlayingUpcoming.movies.map { MovieViewModel(it.id, it.title, it.posterPath) })
+        verify(view).showNowPlayingMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath) })
+        verify(view).showUpcomingMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath) })
+        verify(view).showPopularMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath) })
+        verify(view).showTopRatedMovies(movieList.map { MovieViewModel(it.id, it.title, it.posterPath) })
 
     }
 

@@ -3,20 +3,6 @@ package com.jmcaldera.domain.model
 /**
  * Created by jmcaldera on 07-03-18.
  */
-data class NowPlayingUpcoming(
-        val movies: List<Movie>,    // results
-        val page: Int,
-        val totalResults: Int,
-        val totalPages: Int
-)
-
-data class TopRatedPopular(
-        val page: Int,
-        val totalResults: Int,
-        val totalPages: Int,
-        val movies: List<Movie>
-)
-
 data class Movie(
         val voteCount: Int,
         val id: Int,
@@ -33,8 +19,6 @@ data class Movie(
         val overview: String,
         val releaseDate: String
 )
-
-data class Dates(val maximum: String, val minimum: String)
 
 data class MovieDetails(
         val voteCount: Int,
